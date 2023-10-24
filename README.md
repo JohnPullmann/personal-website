@@ -10,7 +10,7 @@
 </div>
 
 <!-- CONTENT -->
-Welcome to my personal website! This web serves as a window into my world, showcasing my professional journey, projects, and a glimpse into who I am. Whether you're a potential employer, a colleague, or just curious about my work, feel free to visit my [Website](https://johnpullmann.github.io/). 
+Welcome to my personal website! This web serves as a window into my world, showcasing my professional journey, projects, and a glimpse into who I am. Whether you're a potential employer, a colleague, or just curious about my work, feel free to visit my [Website](https://johnpullmann.github.io/personal-website/). 
 
 <!-- CONTACT -->
 <br><br>
