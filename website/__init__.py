@@ -1,12 +1,22 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import os
+from website.config import Config
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+database = SQLAlchemy()
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'site.db')
-app.app_context().push()
-database = SQLAlchemy(app)
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    #app.run(debug=True)
+    app.app_context().push()
 
-from website import routes
+    database.init_app(app)
+
+    # import routes from blueprints
+    from website.main.routes import main
+    # register blueprints
+    app.register_blueprint(main)
+
+    return app
+
+
