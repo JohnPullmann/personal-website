@@ -8,6 +8,10 @@
     --page-component-color: #24242F;
     --social-media-color: #333244;
 
+    --paging-btn-color: #D63240;
+    --paging-btn-hover-color: #e73745;
+
+
     /*TEMP*/
 
 }
@@ -44,10 +48,11 @@ body {
     flex-direction: column;
     flex: 1;
     width: 30px;
+    min-width: 1020px;
     max-width: 65%;
     min-height: 100vh;
     padding: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -311,15 +316,67 @@ footer p {
 
 .navigation .nav-menu {
     flex: 1;
-    margin: auto
+    width: 100%;
+    padding-left: 0;
+    align-items: center;
+    --top: 500px;
+    --height: 0;
 }
+
+.navigation .nav-menu::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: var(--top, 0);
+    width: 2px;
+    height: var(--height, 0);
+    background-color: currentColor;
+    transition: top 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.navigation .nav-menu::before {
+    top: var(--top, 0);
+    height: var(--height, 0);
+  }
 
 .navigation .nav-menu a {
+    position: relative;
     display: inline-flex;
-    margin: 1.5rem 0;
+    height:100%;
+    width: 100%;
+    padding: 18px 0;
+    padding-left: 60px;
     color: var(--icon-color);
+    transition: 0.1s ease-in-out;
 }
 
+.navigation .nav-menu a:hover {
+    color: #fff;
+    text-shadow: 0px 0px 2px #ccc;
+    transition: 0.1s ease-in-out;
+}
+.nav-list-item {
+
+    width: 100%;
+}
+/*
+.nav-list-item::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: currentColor;
+    transform: scaleY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.nav-list-item:hover::before {
+    transform: scaleY(1);
+}
+*/
 
 .navigation .nav-menu a h3 {
     margin-left: 1.4rem;
@@ -369,6 +426,118 @@ footer p {
 .social-media-inactive svg:hover {
     opacity: 0;
 }
+
+.portfolio-elements {
+    margin-top: 25px;
+}
+
+.portfolio-element {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    border-color: var(--icon-color);
+    border-radius: 30px;
+    border-width: 3px;
+    border-style: solid;
+    
+    min-width: 750px;
+    max-width: min(950px, 80%);
+    min-height: 150px;
+    padding:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: auto;
+    margin-bottom: 25px;
+
+}
+
+.paging {
+
+    margin: auto;
+    min-width: 750px;
+    max-width: min(950px, 80%);
+}
+
+.paging a {
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-element-top h3 {
+    font-size: 26px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+
+.portfolio-element-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.portfolio-element-images {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 220px;
+
+    margin: 5px;
+    flex: 1;
+    
+}
+
+.portfolio-element-images-secondary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    justify-content: space-between;
+}
+
+.portfolio-element-images img {
+    margin:5px;
+} 
+
+.portfolio-element-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+
+    margin: 5px;
+}
+
+.portfolio-element-text p {
+    margin-bottom: 5px;
+}
+
+.portfolio-element-description {
+    font-size: 13px;
+
+}
+
+.portfolio-element-text-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;  
+    margin-top: auto; 
+}
+
+.view-more {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-more svg {
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+
 
 
 .form-field input, .form-field textarea {
@@ -491,6 +660,10 @@ a:hover {
     text-shadow:0px 0px 12px #ccc;
 }
 
+.filters {
+    margin-bottom: 25px;
+}
+
 .filters button, .filters input {
     margin: 10px;
 }
@@ -507,15 +680,93 @@ a:hover {
     flex: 1;
 }
 
-.filters-other button, .filters-other input {
+.filter-input {
+
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 370;
+    line-height: normal;
+
+    cursor: pointer;
+    border: solid 3px transparent;
+    background-color: transparent;
+
+    box-shadow: 2px 1000px 1px #1E1E28 inset, 0 0 6px 0 rgba(157, 96, 212, 0.5);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
     color: var(--icon-color);
     border-color: var(--icon-color);
 
     min-width:30px; 
     max-width: 350px;
     height:60px; 
+    margin: 10px;
+    padding: 10px;
+    padding-left: 30px;
+    
     border-radius: 50px;
     flex: 1;
+
+    appearance: auto;
+}
+
+select.filter-input {
+    appearance: auto;
+    -webkit-appearance: none;
+    padding-right: 30px;
+}
+
+
+
+.filter-input option {
+    color: var(--icon-color); 
+    background-color: var(--page-component-color);
+}
+
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    margin:2px;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-red {
+    color: #000;
+    background-color: var(--paging-btn-color);
+    border-color: var(--paging-btn-color);
+}
+
+.btn-red:hover {
+    background-color: #e73745;
+    border-color: #e73745;
+}
+
+.btn-outline-red {
+    color: var(--paging-btn-color);
+    border-color: var(--paging-btn-color);
+    border-width: 2px;
+}
+
+.btn-outline-red:hover {
+    color: #000;
+    background-color: var(--paging-btn-hover-color);
+    border-color: var(--paging-btn-hover-color);
 }
 
 
@@ -537,20 +788,3 @@ a:hover {
 *, ::after, ::before {
     box-sizing: border-box;
 }
-/* 
-navigation
-    nav
-        nav-top
-            a
-                img
-                h2
-        nav-menu
-            a
-                icon
-                h3
-            a
-            a
-            a
-        nav
-
-*/
