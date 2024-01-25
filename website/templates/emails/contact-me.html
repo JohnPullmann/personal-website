@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 30px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            New Contact Form Submission
+        </div>
+        <div class="content">
+            <p><strong>From:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Message:</strong> {{ message }}</p>
+        </div>
+        <div class="footer">
+            This is an automated message. Please do not reply.
+        </div>
+    </div>
+</body>
+</html>
