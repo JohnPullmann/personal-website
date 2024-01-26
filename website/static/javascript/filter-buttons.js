@@ -1,5 +1,5 @@
-// Select all buttons
-var buttons = document.querySelectorAll('.button-red-outline');
+// Select all buttons that are descendants of an element with the class 'filters-javascript'
+var buttons = document.querySelectorAll('.filters-javascript .button-red-outline');
 
 // Function to update the URL query
 function updateQuery(value) {
@@ -54,13 +54,19 @@ function submitWithButton() {
 
 // Function to run when the page loads
 window.onload = function() {
+    // Add event listener to buttons that are descendants of an element with the class 'filters-javascript'
+    var buttons = document.querySelectorAll('.filters-javascript .button-red-outline');
+    buttons.forEach(function(button) {
+        button.addEventListener('click', submitWithButton);
+    });
+
     // Get the 'button' parameter from the URL query
     var url = new URL(window.location.href);
     var buttonValue = url.searchParams.get('button');
 
     // If the 'button' parameter exists, add the 'chosen' class to the matching button
     if (buttonValue) {
-        var buttons = document.querySelectorAll('.button-red-outline');
+        var buttons = document.querySelectorAll('.filters-javascript .button-red-outline');
         buttons.forEach(function(button) {
             if (button.textContent === buttonValue) {
                 button.classList.add('chosen');

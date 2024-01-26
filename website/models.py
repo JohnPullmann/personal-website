@@ -13,11 +13,18 @@ class PortfolioElement(database.Model):
     tags = database.Column(database.String(100), nullable=False)
     images = database.relationship('Image', backref='portfolio_element', lazy=True)
     type = database.Column(database.String(50))
+    date_filer_base = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
+    priority = database.Column(database.Integer, nullable=False, default=0)
 
     __mapper_args__ = {
         'polymorphic_identity':'portfolio_element',
         'polymorphic_on':type
     }
+
+    #this is used to filter the portfolio elements by date if no button is selected
+    @hybrid_property
+    def date_filter(self):
+        return self.date_filer_base
 
     def __repr__(self):
         return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}')"
@@ -42,6 +49,10 @@ class Project(PortfolioElement):
     @hybrid_property
     def date_text(self):
         return self.date.strftime('Started on %d. %b %Y')
+    
+    @hybrid_property
+    def date_filter(self):
+        return self.date
 
     def __repr__(self):
         return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}')"
@@ -63,6 +74,10 @@ class Work(PortfolioElement):
         start = self.date_start.strftime('%b %Y')
         end = self.date_end.strftime('%b %Y') if self.date_end else 'Present'
         return f'{start} - {end}'
+    
+    @hybrid_property
+    def date_filter(self):
+        return self.date_start
 
     def __repr__(self):
         return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}')"
@@ -84,6 +99,10 @@ class Education(PortfolioElement):
         start = self.date_start.strftime('%b %Y')
         end = self.date_end.strftime('%b %Y') if self.date_end else 'Present'
         return f'{start} - {end}'
+    
+    @hybrid_property
+    def date_filter(self):
+        return self.date_start
 
     def __repr__(self):
         return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}')"
@@ -93,6 +112,7 @@ class Certification(PortfolioElement):
     __tablename__ = 'certification'
     id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), primary_key=True)
     valid_ranges = database.Column(database.String(100), nullable=False)
+    first_acquired = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     expiration_date = database.Column(database.DateTime, default=None)
     date_text = database.Column(database.String(100), nullable=False, default=valid_ranges)
 
@@ -103,6 +123,10 @@ class Certification(PortfolioElement):
     @hybrid_property
     def date_text(self):
         return f'Valid { self.valid_ranges}'
+    
+    @hybrid_property
+    def date_filter(self):
+        return self.first_acquired
 
     def __repr__(self):
         return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}')"

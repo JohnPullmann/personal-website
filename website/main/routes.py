@@ -3,7 +3,8 @@ from website.main.forms import ContactMe
 from flask_mail import Message
 from website import mail, database
 from website.models import PortfolioElement, Project, Work, Education, Certification
-
+from sqlalchemy import desc, asc, union_all
+from website.main.utils import filter_portfolio_elements
 
 
 main = Blueprint('main', __name__)  # Use 'dark' as the default theme
@@ -36,15 +37,15 @@ def portfolio():
     # Create database if it doesn't exist
     database.create_all()
 
-    # Get elements from database
-    PortfolioElements = PortfolioElement.query.all()
-    Projects = Project.query.all()
-    Works = Work.query.all()
-    Educations = Education.query.all()
-    Certifications = Certification.query.all()
+    # Get parameters from query
+    button = request.args.get('button')
+    sort = request.args.get('sort')
+    search = request.args.get('search')
 
+    PortfolioElements = filter_portfolio_elements(button, search, sort)
 
     return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements)
+
 
 @main.route('/resume')
 def resume():
