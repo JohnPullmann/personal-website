@@ -2,6 +2,236 @@
 
 {% block content %}
 
-<h1>Portfolio</h1>
+<div class="timeline center-elements" style="border: solid 2px #fff; border-radius: 25px; height: 100px;">
+    <h2>Here will be timeline</h2>
+</div>
+
+<div class="center-elements column-elements section-no-outline filters">
+    <div class="filters-type row-elements" style="display:flex;">    
+        <button class="button-red-outline" type="button" >Projects</button>
+        <button class="button-red-outline" type="button" >Education</button>
+        <button class="button-red-outline" type="button" >Certifications</button>
+        <button class="button-red-outline" type="button" >Work</button>
+    </div>
+    <div class="filters-other row-elements"> 
+        <!--
+        <label for="order-portfolio"></label>
+        <select class="filter-input" name="order-portfolio" id="order-portfolio">
+        <datalist id="order-portfolio">    
+            <option value="Basic order">
+            <option value="Newest">
+            <option value="Oldest">
+            <option value="Alphabetically">
+        </datalist>
+        </select>
+
+        <label for="browser"></label>
+        <input class="filter-input" id="browser" name="browser" list="browsers" placeholder="Sort by..."> 
+        <datalist id="browsers">
+            <option value="Basic order">
+            <option value="Newest">
+            <option value="Oldest">
+            <option value="Alphabetically">
+        </datalist>
+        
+        <input class="filter-input" id="name" name="name" type="text" placeholder="Search..." required=""> 
+        <label for="name"></label>
+    -->
+        <form action="/portfolio" method="get">
+            <select class="filter-input"  id="sort" name="sort" onchange="submitWithButton()">
+                <option value="default_order" {% if request.args.get('sort') == 'default_order' %}selected{% endif %}>Default order</option>
+                <option value="newest" {% if request.args.get('sort') == 'newest' %}selected{% endif %}>Newest</option>
+                <option value="oldest" {% if request.args.get('sort') == 'oldest' %}selected{% endif %}>Oldest</option>
+                <option value="alphabetically" {% if request.args.get('sort') == 'alphabetically' %}selected{% endif %}>Alphabetically</option>
+            </select>
+        
+            <input class="filter-input"  type="text" id="search" name="search"  placeholder="Search..."  onkeydown="if (event.key === 'Enter') submitWithButton()" >
+        </form>
+
+    </div>
+</div>
+
+<div class="section-no-outline portfolio-elements">
+    
+    <!--
+
+    <div class="portfolio-element ">
+        <div class="portfolio-element-top">
+            <h3>Project name</h3>
+        </div>
+        <div class="portfolio-element-tags">
+        </div>
+
+        <div class="portfolio-element-bottom">
+            <div class="portfolio-element-images">
+                <img src="https://via.placeholder.com/140x95" alt="image">
+                <div class="portfolio-element-images-secondary">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                </div>
+            </div>
+            <div class="portfolio-element-text">
+
+                <p class="portfolio-element-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and lorem ipsum natum ...</p>
+                <div class="portfolio-element-text-bottom">
+
+                    <p>Started on 21. 12. 2004</p>
+
+                    <a class="view-more" href="#">
+                        <p>View more</p>  
+                        <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-element ">
+        <div class="portfolio-element-top">
+            <h3>Education name</h3>
+        </div>
+        <div class="portfolio-element-tags">
+        </div>
+
+        <div class="portfolio-element-bottom">
+            <div class="portfolio-element-images">
+                <img src="https://via.placeholder.com/140x95" alt="image">
+                <div class="portfolio-element-images-secondary">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                </div>
+            </div>
+            <div class="portfolio-element-text">
+
+                <p class="portfolio-element-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and lorem ipsum natum ...</p>
+                <div class="portfolio-element-text-bottom">
+
+                    <p>21. 12. 2004 - 21. 12. 2008</p>
+
+                    <a class="view-more" href="#">
+                        <p>View more</p>  
+                        <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                    </a>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-element ">
+        <div class="portfolio-element-top">
+            <h3>Certification name</h3>
+        </div>
+        <div class="portfolio-element-tags">
+        </div>
+
+        <div class="portfolio-element-bottom">
+            <div class="portfolio-element-images">
+                <img src="https://via.placeholder.com/140x95" alt="image">
+                <div class="portfolio-element-images-secondary">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                </div>
+            </div>
+            <div class="portfolio-element-text">
+
+                <p class="portfolio-element-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and lorem ipsum natum ...</p>
+                <div class="portfolio-element-text-bottom">
+
+                    <p>Valid 21. 12. 2004 - 21. 12. 2007</p>
+
+                    <a class="view-more" href="#">
+                        <p>View more</p>  
+                        <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                    </a>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portfolio-element ">
+        <div class="portfolio-element-top">
+            <h3>Work name</h3>
+        </div>
+        <div class="portfolio-element-tags">
+        </div>
+
+        <div class="portfolio-element-bottom">
+            <div class="portfolio-element-images">
+                <img src="https://via.placeholder.com/140x95" alt="image">
+                <div class="portfolio-element-images-secondary">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                    <img src="https://via.placeholder.com/60x42" alt="image">
+                </div>
+            </div>
+            <div class="portfolio-element-text">
+
+                <p class="portfolio-element-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and lorem ipsum natum ...</p>
+                <div class="portfolio-element-text-bottom">
+
+                    <p>21. 12. 2004 - now</p>
+
+                    <a class="view-more" href="#">
+                        <p>View more</p>  
+                        <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                    </a>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    -->
+
+    <!-- Imported Portfolio Elements from Database -->
+    {% for PortfolioElement in PortfolioElements %}
+        <div class="portfolio-element ">
+            <div class="portfolio-element-top">
+                <h3>{{ PortfolioElement.name }} </h3>
+            </div>
+            <div class="portfolio-element-tags">
+            </div>
+
+            <div class="portfolio-element-bottom">
+                <div class="portfolio-element-images">
+                    {% for image in PortfolioElement.images %}
+                        {% if loop.first %}
+                            <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                        {% endif %}
+                    {% endfor %}
+                    <div class="portfolio-element-images-secondary">
+                        {% for image in PortfolioElement.images %}
+                            {% if loop.index == 2 or loop.index == 3 %}
+                                <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="portfolio-element-text">
+                    <!-- Description -->
+                    <p class="portfolio-element-description">{{ PortfolioElement.description|truncate(220, True, ' ...') }}</p>
+                    <div class="portfolio-element-text-bottom">
+                        <!-- Date -->
+                        <p>{{ PortfolioElement.date_text }}</p>
+                        <!-- View more link -->
+                        <a class="view-more" href="{{ url_for('main.portfolio_element_page', element_name=PortfolioElement.url_name, element_type=PortfolioElement.type) }}">
+                            <p>View more</p>  
+                            <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <div class="paging">
+        <a class="btn btn-red" href="/portfolio?page=1">1</a>
+
+        <a class="btn btn-outline-red" href="/portfolio?page=2">2</a>
+        ...
+        <a class="btn btn-outline-red" href="/portfolio?page=6">6</a>
+    </div>
+
+</div>
+
 
 {% endblock %}

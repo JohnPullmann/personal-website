@@ -1,9 +1,9 @@
-from flask import render_template, session, Blueprint, flash
-from flask import request
+from flask import render_template, session, Blueprint, flash, request, redirect, url_for
 from website.main.forms import ContactMe
 from flask_mail import Message
-from website import mail
-from flask import redirect, url_for
+from website import mail, database
+from website.models import PortfolioElement, Project, Work, Education, Certification
+
 
 
 main = Blueprint('main', __name__)  # Use 'dark' as the default theme
@@ -26,14 +26,25 @@ def home():
 
         return redirect(url_for('main.home') + "#contact-me")
 
-
     return render_template('home.html', title='Home', form=form)	
 
 @main.route('/portfolio')
 def portfolio():
     # portfolio route
     ...
-    return render_template('portfolio.html', title='Portfolio')
+
+    # Create database if it doesn't exist
+    database.create_all()
+
+    # Get elements from database
+    PortfolioElements = PortfolioElement.query.all()
+    Projects = Project.query.all()
+    Works = Work.query.all()
+    Educations = Education.query.all()
+    Certifications = Certification.query.all()
+
+
+    return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements)
 
 @main.route('/resume')
 def resume():
@@ -46,3 +57,18 @@ def toggle_theme():
     theme = request.json.get('theme')
     session['theme'] = theme
     return '', 204
+
+@main.route('/portfolio/<string:element_type>/<string:element_name>')
+def portfolio_element_page(element_type, element_name):
+    # portfolio element route
+    ...
+
+    '''
+    # Create database if it doesn't exist
+    database.create_all()
+
+    # Get element from database
+    element = PortfolioElement.query.filter_by(type=element_type, url_name=url_name).first_or_404()
+
+    return render_template('portfolio-element.html', title=element.name, element=element)
+    '''

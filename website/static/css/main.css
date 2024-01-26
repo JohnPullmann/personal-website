@@ -220,6 +220,16 @@ body {
     box-shadow: 2px 1000px 1px var(--shadow-color1) inset, 0 0 6px 0 var(--shadow-color2), 0 0 15px 10px var(--shadow-color3);
 }
 
+.button-red-outline.chosen {
+    background-image: var(--button-red-gradient);
+    background-clip: border-box;
+    box-shadow: none;
+    color: var(--text-color);
+}
+.button-red-outline.chosen:hover {
+    box-shadow: 0 0 6px 0 var(--shadow-color2), 0 0 15px 10px var(--shadow-color3);
+}
+
 .submit-frame .button-red-outline {
     box-shadow: 2px 1000px 1px var(--section-full) inset, 0 0 6px 0 rgba(157, 96, 212, 0.5);
 }
