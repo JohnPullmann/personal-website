@@ -33,6 +33,7 @@ def home():
 def portfolio():
     # portfolio route
     ...
+    page = request.args.get('page', 1, type=int)
 
     # Create database if it doesn't exist
     database.create_all()
@@ -43,6 +44,7 @@ def portfolio():
     search = request.args.get('search')
 
     PortfolioElements = filter_portfolio_elements(button, search, sort)
+    PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
     return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements)
 

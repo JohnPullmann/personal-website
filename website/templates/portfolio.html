@@ -6,7 +6,7 @@
     <h2>Here will be timeline</h2>
 </div>
 
-<div class="center-elements column-elements section-no-outline filters">
+<div class="center-elements column-elements section-no-outline filters filters-javascript">
     <div class="filters-type row-elements" style="display:flex;">    
         <button class="button-red-outline" type="button" >Projects</button>
         <button class="button-red-outline" type="button" >Education</button>
@@ -14,29 +14,7 @@
         <button class="button-red-outline" type="button" >Work</button>
     </div>
     <div class="filters-other row-elements"> 
-        <!--
-        <label for="order-portfolio"></label>
-        <select class="filter-input" name="order-portfolio" id="order-portfolio">
-        <datalist id="order-portfolio">    
-            <option value="Basic order">
-            <option value="Newest">
-            <option value="Oldest">
-            <option value="Alphabetically">
-        </datalist>
-        </select>
 
-        <label for="browser"></label>
-        <input class="filter-input" id="browser" name="browser" list="browsers" placeholder="Sort by..."> 
-        <datalist id="browsers">
-            <option value="Basic order">
-            <option value="Newest">
-            <option value="Oldest">
-            <option value="Alphabetically">
-        </datalist>
-        
-        <input class="filter-input" id="name" name="name" type="text" placeholder="Search..." required=""> 
-        <label for="name"></label>
-    -->
         <form action="/portfolio" method="get">
             <select class="filter-input"  id="sort" name="sort" onchange="submitWithButton()">
                 <option value="default_order" {% if request.args.get('sort') == 'default_order' %}selected{% endif %}>Default order</option>
@@ -52,7 +30,7 @@
 </div>
 
 <div class="section-no-outline portfolio-elements">
-    
+
     <!--
 
     <div class="portfolio-element ">
@@ -207,7 +185,7 @@
                 </div>
                 <div class="portfolio-element-text">
                     <!-- Description -->
-                    <p class="portfolio-element-description">{{ PortfolioElement.description|truncate(220, True, ' ...') }}</p>
+                    <p class="portfolio-element-description">{{ PortfolioElement.description|truncate(240, True, ' ...') }}</p>
                     <div class="portfolio-element-text-bottom">
                         <!-- Date -->
                         <p>{{ PortfolioElement.date_text }}</p>
@@ -222,13 +200,18 @@
         </div>
     {% endfor %}
 
-
     <div class="paging">
-        <a class="btn btn-red" href="/portfolio?page=1">1</a>
-
-        <a class="btn btn-outline-red" href="/portfolio?page=2">2</a>
-        ...
-        <a class="btn btn-outline-red" href="/portfolio?page=6">6</a>
+        {% for page_num in PortfolioElements.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+            {% if page_num %}
+                {% if page_num != PortfolioElements.page %}
+                    <a class="btn btn-outline-red" href="{{ url_for('main.portfolio', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-red" href="{{ url_for('main.portfolio', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
     </div>
 
 </div>
