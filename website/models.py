@@ -10,7 +10,8 @@ class PortfolioElement(database.Model):
     url_name = database.Column(database.String(100), nullable=False)
     name = database.Column(database.String(100), nullable=False)
     description = database.Column(database.Text, nullable=False)
-    tags = database.Column(database.String(100), nullable=False)
+    tags = database.relationship('Tag', lazy='subquery',
+        backref='portfolio_element')
     images = database.relationship('Image', backref='portfolio_element', lazy=True)
     type = database.Column(database.String(50))
     date_filer_base = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
@@ -30,6 +31,7 @@ class PortfolioElement(database.Model):
         return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}')"
 
 class Image(database.Model):
+    __tablename__ = 'image'
     id = database.Column(database.Integer, primary_key=True)
     image_path = database.Column(database.String(120), nullable=False)
     portfolio_element_id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), nullable=False)
@@ -37,10 +39,20 @@ class Image(database.Model):
     def __repr__(self):
         return f"Image('{self.id}', '{self.portfolio_element_id}',  '{self.image_path}')"
 
+class Tag(database.Model):
+    __tablename__ = 'tag'
+    id = database.Column(database.Integer, primary_key=True)
+    name = database.Column(database.String(100), nullable=False)
+    portfolio_element_id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"Tag('{self.id}', '{self.name}')"
+
 class Project(PortfolioElement):
     __tablename__ = 'project'
     id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), primary_key=True)
     date = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
+    github_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {
         'polymorphic_identity':'project',
@@ -64,6 +76,7 @@ class Work(PortfolioElement):
     date_start = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     date_end = database.Column(database.DateTime, default=None)
     date_text = database.Column(database.String(100), nullable=False, default=date_start + ' - ' + date_end)
+    work_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {
         'polymorphic_identity':'work',
@@ -89,6 +102,7 @@ class Education(PortfolioElement):
     date_start = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     date_end = database.Column(database.DateTime, default=None)
     date_text = database.Column(database.String(100), nullable=False, default=date_start + ' - ' + date_end)
+    education_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {
         'polymorphic_identity':'education',
@@ -115,6 +129,7 @@ class Certification(PortfolioElement):
     first_acquired = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     expiration_date = database.Column(database.DateTime, default=None)
     date_text = database.Column(database.String(100), nullable=False, default=valid_ranges)
+    verification_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {
         'polymorphic_identity':'certification',

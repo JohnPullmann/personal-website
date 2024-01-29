@@ -652,7 +652,7 @@ footer p {
     border-width: 3px;
     border-style: solid;
     
-    min-width: 750px;
+    min-width: 800px;
     max-width: min(950px, 80%);
     min-height: 150px;
     padding:10px;
@@ -661,6 +661,10 @@ footer p {
     margin: auto;
     margin-bottom: 25px;
 
+}
+
+.portfolio-element-images img {
+    border-radius: 10%;
 }
 
 .paging {
