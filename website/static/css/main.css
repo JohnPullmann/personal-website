@@ -11,9 +11,11 @@
     --icon-color: #DEDEDE;
     --page-component-color: #24242F;
     --social-media-color: #333244;
+    --border-color: var(--icon-color);
 
     --paging-btn-color: #D63240;
     --paging-btn-hover-color: #e73745;
+    --paging-btn-text-color: #f4f5f9;
 
     --button-red-text-color: #FF384A;
     --button-red-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #FF6565, #D63240);
@@ -60,22 +62,24 @@
 
 .light-theme {
     --font-family: Inter;
-    --nav-font-family: Inter;
+    --nav-font-family: Source Sans Pro, sans-serif;
     --font-weight-normal: 400;
     --font-weight-bold: 600;
     --Container-background: #FFFFFF99;
     --Container-border: #FFFFFF80;
 
     /* #b6c1d4; */
-    --background-color: #b6c1d4;
-    --text-color: #000000;
+    --background-color: #e6e8ec;
+    --text-color: #525458;
     --text-color-opposite: #FFFFFF;
-    --icon-color: #313131;
+    --icon-color: #525458;
     --page-component-color: #E0E0E0;
     --social-media-color: #CCCCCC;
+    --border-color: var(--icon-color);
 
-    --paging-btn-color: #FF6347;
-    --paging-btn-hover-color: #FF4500;
+    --paging-btn-color: #D63240;
+    --paging-btn-hover-color: #e73745;
+    --paging-btn-text-color: #f4f5f9;
 
     --button-red-text-color: #f70000;
     --button-red-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(to bottom, #FFA07A, #FF6347);
@@ -89,14 +93,14 @@
 
     --hero-text-color: #d14229;
 
-    --navigation-color: #DDDDDD;
-    --nav-gradient: linear-gradient(to right bottom, #EEEEEE, #CCCCCC);
+    --navigation-color: #fcfcfc;
+    --nav-gradient: linear-gradient(to right bottom, #FFFFFF99, rgba(224, 225, 230, 0.6));
     --nav-border: 1px solid var(--Container-border, rgba(255, 255, 255, 0.50));
     --nav-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.10), 0px 4px 4px 0px rgba(0, 0, 0, 0.05), 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
     --nav-backdrop-filter: blur(10px);
 
-    --section-gradient: var(--Container-background, rgba(255, 255, 255, 0.60));
-    --section-full: #e2e6ee;
+    --section-gradient: linear-gradient(to right bottom, #FFFFFF99, #e0e1e699);
+    --section-full: #fbfbfd;
     --section-border: 1px solid var(--Container-border, rgba(255, 255, 255, 0.50));
     --section-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.10), 0px 4px 4px 0px rgba(0, 0, 0, 0.05), 0px 1px 0px 0px rgba(0, 0, 0, 0.05);
     --section-backdrop-filter: blur(10px);
@@ -108,7 +112,7 @@
 
     --form-background-color: #E0E0E0;
     --contact-form-label-color: transparent;
-    --form-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 7.08%, rgba(255, 255, 255, 0.20) 106.41%);
+    --form-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.068) 7.08%, rgba(255, 255, 255, 0.068) 106.41%);
     --form-icon-color: #414141;
 
     --color-theme-bacground-color: #67677228;
@@ -150,6 +154,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-weight: var(--font-weight-normal);
+    border-color: var(--border-color);
 }
 
 .container {
@@ -734,6 +739,7 @@ footer p {
 
 .portfolio-element-text p {
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .portfolio-element-description {
@@ -995,7 +1001,7 @@ select.filter-input {
 }
 
 .btn-red {
-    color: var(--text-color-opposite);
+    color: var(--paging-btn-text-color);
     background-color: var(--paging-btn-color);
     border-color: var(--paging-btn-color);
 }
@@ -1035,4 +1041,11 @@ select.filter-input {
 
 *, ::after, ::before {
     box-sizing: border-box;
+}
+
+img {
+    object-fit: cover;
+    object-position: center;
+    transform: translate3d(0, 0, 1px);
+
 }
