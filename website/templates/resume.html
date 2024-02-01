@@ -9,9 +9,9 @@
     <button class="button-red-outline" type="button" style="width:300px; height:60px;; border-radius: 50px;">Download<br><p style="font-size: 20px;line-height: 20px;">SK PDF</p></button>
     -->
 </div>
-<div class="center-elements">
+<div class="center-elements resume-holder">
     <object class="embeded-pdf"  data="{{ url_for('static', filename='JohnPullmann-Resume.pdf') }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf">
-        <embed class="embeded-pdf" src="{{ url_for('static', filename='JohnPullmann-Resume.pdf') }}#toolbar=0&navpanes=0&scrollbar=0" type='application/pdf'>
+        <p>PDF could not be displayed. You can download it higher on this page.</p> 
       </object>
 </div>
 {% endblock %}
