@@ -722,6 +722,7 @@ footer p {
 }
 
 .content::before {
+    display: none;
     content: ""; /* Add this line */
     position: fixed;
     top: 0;
@@ -736,6 +737,7 @@ footer p {
 }
 
 .content.nav-active::before {
+    display: block;
     opacity: 1;
 }
 
@@ -830,8 +832,6 @@ footer p {
 }
 
 .paging {
-
-    margin: auto;
     min-width: 750px;
     max-width: min(950px, 80%);
 }
@@ -1167,6 +1167,7 @@ select.filter-input {
 }
 
 .btn-red:hover {
+    color: var(--paging-btn-text-color);
     background-color: var(--paging-btn-hover-color);
     border-color: var(--paging-btn-hover-color);
 }
@@ -1181,6 +1182,10 @@ select.filter-input {
     color: var(--text-color-opposite);
     background-color: var(--paging-btn-hover-color);
     border-color: var(--paging-btn-hover-color);
+}
+
+.my-skill-section {
+    gap: 25%;
 }
 
 
@@ -1274,7 +1279,7 @@ content (after 1360px)
         padding-top: 0rem;
         padding-bottom: 1rem;
 
-        min-width: 400px;
+        min-width: 100px;
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
@@ -1357,9 +1362,139 @@ content (after 1025px)
 }
 /* ------------------------------
 
-content (after 600px)
+content (after 650px)
 
 ------------------------------ */
-@media (max-width: 600px) {
-    /* styles */
+@media (max-width: 650px) {
+
+    .dark-theme, .light-theme {
+        /* dynamic size fonts*/
+        --font-size-section-sub-title: calc(6px + 2.5vw);
+        --font-size-footer: calc(12px + 2vw);    
+
+        --font-size-hero-big: calc(40px + 1.8vw);
+        --font-size-hero-medium: calc(25px + 1.1vw);
+        --font-size-hero-small: calc(15px + 1vw);
+
+        --font-size-port-description: calc(10px + 1.3vw);
+
+    }
+
+    .content {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .section {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+
+    .my-skill-section {
+        gap: 10%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .section-sub-title {
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+    }
+
+    .section-contact-me {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hobbies-section {
+        flex-direction: row;
+    }
+
+    .hobbies-element {
+        flex: 1 0 100%;
+        flex-direction: column;
+        margin: 10px 0px 10px 0;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 10px;
+
+    }
+
+    .hobbies-element div {
+        margin-top: 10px;
+        margin-bottom: 10px;   
+    }
+
+
+
+    .hobbies-element h3, .hobbies-element p {
+        min-width: 20px;
+        margin-right: 10px;
+    }
+
+    .section-hero {
+        margin-left: 15px;
+    }
+    /* Portfolio */
+
+    .filters-type {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .filters-other form {
+        display: flex;
+        width: 100%;
+    }
+
+    .filters-type button, .filters-other select, .filters-other input {
+        
+        flex: 1 1 40% !important;
+        min-width: 0 !important;
+    }
+
+    .portfolio-element-description {
+        min-width: 0;
+    }
+
+    .portfolio-element-images { 
+        width: 100%;
+        height: 120px;
+        max-height: 120px;;
+        justify-content: center;
+    }
+
+    .portfolio-element-images img {
+        margin: 5px;
+        width: 30%;
+        height: 100%;
+        
+    }
+
+    .port-elem-image-sec {
+        display: flex;
+        margin-top: 5px;
+        width: 20% !important; 
+        height: 60px !important; 
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+
+    .paging {
+        margin-left: 20px;
+        margin-right: 20px;
+        min-width: 0;
+    }
+
+
+
+    
+
+
 }

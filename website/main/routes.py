@@ -5,6 +5,7 @@ from website import mail, database
 from website.models import PortfolioElement, Project, Work, Education, Certification
 from sqlalchemy import desc, asc, union_all
 from website.main.utils import filter_portfolio_elements
+from flask import current_app
 
 
 main = Blueprint('main', __name__)  # Use 'dark' as the default theme
@@ -18,7 +19,7 @@ def home():
     form = ContactMe()
     if form.validate_on_submit():
         msg = Message('New contact form submission',
-                      sender='webtesting489@gmail.com',
+                      sender=current_app.config['MAIL_USERNAME'],
                       recipients=['john.pullmann@gmail.com'])
         msg.body = f"From: {form.name.data} \r\nEmail: {form.email.data}\r\nMessage: {form.message.data}"
         msg.html = render_template('emails/contact-me.html' , name=form.name.data, email=form.email.data, message=form.message.data)

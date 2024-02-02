@@ -55,7 +55,7 @@
 
 <div class="section-no-outline">
     <h2 class="section-title">My main skills</h2>
-    <div class="row-elements  center-elements" style="gap: 25%">
+    <div class="row-elements  center-elements my-skill-section">
         <div class="element column-elements" style="width: 210px; height: 210px;">
             <h3>Coding</h3>
             <svg class="coding-icon icon"  style="width: 120px; height: 120px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.programming-icon1{fill:none;}</style></defs><title>programing-outline</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="programming-icon1" width="300" height="300"/><path d="M40.79,15.5A21.35,21.35,0,0,0,19.5,36.79V170.64a21.35,21.35,0,0,0,21.29,21.29h75.1L99.45,219.12a6.09,6.09,0,0,0,5.22,9.32h91.26a6.09,6.09,0,0,0,5.23-9.32l-16.45-27.19h75.1a21.36,21.36,0,0,0,21.3-21.29V36.79a21.36,21.36,0,0,0-21.3-21.29Zm0,12.17h219a9.12,9.12,0,0,1,9.13,9.12V170.64a9.12,9.12,0,0,1-9.13,9.12h-219a9.12,9.12,0,0,1-9.12-9.12V36.79A9.12,9.12,0,0,1,40.79,27.67ZM166.12,59.16a6.08,6.08,0,0,0-4.85,4l-30.42,79.09a6.11,6.11,0,0,0,11.41,4.37l30.42-79.09a6.08,6.08,0,0,0-6.56-8.36ZM115.26,74.37a6.12,6.12,0,0,0-2.75.66L63.84,99.37a6.08,6.08,0,0,0,0,10.93l48.67,24.33A6.12,6.12,0,1,0,118,123.7L80.28,104.88,118,86a6.08,6.08,0,0,0-2.76-11.59Zm72.82,0A6.08,6.08,0,0,0,185.51,86l37.74,18.92L185.51,123.7A6.12,6.12,0,1,0,191,134.63L239.7,110.3a6.08,6.08,0,0,0,0-10.93L191,75A6.16,6.16,0,0,0,188.08,74.37ZM131.61,191.93h40.31l14.64,24.34H117ZM59.94,240.6a6.11,6.11,0,0,0-4.85,3.33L39.88,274.35a6.09,6.09,0,0,0,5.42,8.84H230.86a6.15,6.15,0,0,0,5.46-9.07A5.84,5.84,0,0,0,231,271H55.09l9.13-18.25h175.1l13.5,27a6.08,6.08,0,1,0,11.34-4.41,6.37,6.37,0,0,0-.51-1l-15.21-30.42A6.07,6.07,0,0,0,243,240.6H59.94Z"/></g></g></svg>
@@ -113,7 +113,7 @@
         </div>
         <!-- button -->
         <div class="submit-frame" style="position:relative; ">
-            <button style="width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>
+            <button style="width: 100%; max-width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
