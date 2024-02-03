@@ -10,7 +10,7 @@ from flask import current_app
 
 main = Blueprint('main', __name__)  # Use 'dark' as the default theme
 
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 @main.route('/home', methods=['GET', 'POST'])
 def home():
     # home route

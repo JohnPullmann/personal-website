@@ -27,9 +27,13 @@
     --text-color: #FFFFFF;
     --text-color-opposite: #000000;
     --icon-color: #DEDEDE;
-    --page-component-color: #24242F;
+    --page-component-color: #24242f;
     --social-media-color: #333244;
     --border-color: var(--icon-color);
+
+    --scrollbar-color: rgb(54, 54, 70);
+    --scrollbar-hover-color: rgb(60, 60, 74);
+    --scrollbar-track-color: none;
 
     --paging-btn-color: #D63240;
     --paging-btn-hover-color: #e73745;
@@ -116,6 +120,10 @@
     --social-media-color: #CCCCCC;
     --border-color: var(--icon-color);
 
+    --scrollbar-color: rgb(145, 145, 155);
+    --scrollbar-hover-color: rgb(164, 164, 172);
+    --scrollbar-track-color: none;
+
     --paging-btn-color: #D63240;
     --paging-btn-hover-color: #e73745;
     --paging-btn-text-color: #f4f5f9;
@@ -186,9 +194,31 @@
 }
 /*-------------*/
 
+/*javascript related*/
 
+/*-------------*/
 
+/* scrollbar */
 
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color); /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color); /* color of the scroll thumb */
+    border-radius: 50px;
+    
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover-color); /* color of the scroll thumb on hover */
+}
+
+/*-------------*/
 
 body {
     background-color: var(--background-color);
