@@ -11,6 +11,9 @@ from flask import current_app
 main = Blueprint('main', __name__)  # Use 'dark' as the default theme
 
 @main.route('/', methods=['GET', 'POST'])
+def index():
+    return redirect(url_for('main.home'))
+
 @main.route('/home', methods=['GET', 'POST'])
 def home():
     # home route
