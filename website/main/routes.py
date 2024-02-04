@@ -21,15 +21,19 @@ def home():
     # Contact me form
     form = ContactMe()
     if form.validate_on_submit():
-        msg = Message('New contact form submission',
-                      sender=current_app.config['MAIL_USERNAME'],
-                      recipients=['john.pullmann@gmail.com'])
-        msg.body = f"From: {form.name.data} \r\nEmail: {form.email.data}\r\nMessage: {form.message.data}"
-        msg.html = render_template('emails/contact-me.html' , name=form.name.data, email=form.email.data, message=form.message.data)
-        mail.send(msg)
-        flash('Success! You message has been sent.', 'success')
+        try:
+            msg = Message('New contact form submission',
+                        sender=current_app.config['MAIL_USERNAME'],
+                        recipients=['john.pullmann@gmail.com'])
+            msg.body = f"From: {form.name.data} \r\nEmail: {form.email.data}\r\nMessage: {form.message.data}"
+            msg.html = render_template('emails/contact-me.html' , name=form.name.data, email=form.email.data, message=form.message.data)
+            mail.send(msg)
+            flash('Success! You message has been sent.', 'success')
 
-        return redirect(url_for('main.home') + "#contact-me")
+            return redirect(url_for('main.home') + "#contact-me")
+        except Exception as e:
+            print(f"Failed to send email: {e}")
+    
 
     return render_template('home.html', title='Home', form=form)	
 
@@ -69,6 +73,7 @@ def toggle_theme():
 def portfolio_element_page(element_type, element_name):
     # portfolio element route
     ...
+    return "Comming soon!"
 
     '''
     # Create database if it doesn't exist
