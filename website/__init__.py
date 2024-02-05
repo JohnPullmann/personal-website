@@ -11,7 +11,6 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
     #app.run(debug=True)
-    app.app_context().push()
 
     database.init_app(app)
     mail.init_app(app)
