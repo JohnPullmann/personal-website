@@ -12,7 +12,8 @@ class PortfolioElement(database.Model):
     description = database.Column(database.Text, nullable=False)
     tags = database.relationship('Tag', lazy='subquery',
         backref='portfolio_element')
-    images = database.relationship('Image', backref='portfolio_element', lazy=True)
+    images_small = database.relationship('Image', backref='portfolio_element_small', lazy=True, foreign_keys='Image.portfolio_element_small_id')
+    images = database.relationship('Image', backref='portfolio_element', lazy=True, foreign_keys='Image.portfolio_element_id')
     type = database.Column(database.String(50))
     date_filer_base = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     priority = database.Column(database.Integer, nullable=False, default=0)
@@ -28,13 +29,14 @@ class PortfolioElement(database.Model):
         return self.date_filer_base
 
     def __repr__(self):
-        return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}')"
+        return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}, {self.images_small}')"
 
 class Image(database.Model):
     __tablename__ = 'image'
     id = database.Column(database.Integer, primary_key=True)
     image_path = database.Column(database.String(120), nullable=False)
-    portfolio_element_id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), nullable=False)
+    portfolio_element_id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), nullable=True)
+    portfolio_element_small_id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), nullable=True)
 
     def __repr__(self):
         return f"Image('{self.id}', '{self.portfolio_element_id}',  '{self.image_path}')"
@@ -67,7 +69,7 @@ class Project(PortfolioElement):
         return self.date
 
     def __repr__(self):
-        return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}')"
+        return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}, {self.images_small}')"
 
 
 class Work(PortfolioElement):
@@ -93,7 +95,7 @@ class Work(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}')"
+        return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
 
 
 class Education(PortfolioElement):
@@ -119,7 +121,7 @@ class Education(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}')"
+        return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
 
 
 class Certification(PortfolioElement):
@@ -144,4 +146,4 @@ class Certification(PortfolioElement):
         return self.first_acquired
 
     def __repr__(self):
-        return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}')"
+        return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}, {self.images_small}')"
