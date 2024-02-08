@@ -43,21 +43,21 @@
             <div class="portfolio-element-bottom">
                 <div class="portfolio-element-images">
                     <!--small image for changed layout, first hidden-->
-                    {% for image in PortfolioElement.images %}
+                    {% for image in PortfolioElement.images_small %}
                         {% if loop.index == 2 %}
                             <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
                         {% endif %}
                     {% endfor %}
 
                     <!--big image for main layout-->
-                    {% for image in PortfolioElement.images %}
+                    {% for image in PortfolioElement.images_small %}
                         {% if loop.first %}
                             <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
                         {% endif %}
                     {% endfor %}
 
                     <!--small image for changed layout, first hidden-->
-                    {% for image in PortfolioElement.images %}
+                    {% for image in PortfolioElement.images_small %}
                         {% if loop.index == 3 %}
                             <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
                         {% endif %}
@@ -65,7 +65,7 @@
 
                     <!--secondary images for main layout-->
                     <div class="portfolio-element-images-secondary">
-                        {% for image in PortfolioElement.images %}
+                        {% for image in PortfolioElement.images_small %}
                             {% if loop.index == 2 or loop.index == 3 %}
                                 <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
                             {% endif %}
@@ -79,7 +79,7 @@
                         <!-- Date -->
                         <p>{{ PortfolioElement.date_text }}</p>
                         <!-- View more link -->
-                        <a class="view-more" href="{{ url_for('main.portfolio_element_page', element_name=PortfolioElement.url_name, element_type=PortfolioElement.type) }}">
+                        <a class="view-more" href="{{ url_for('main.portfolio_element_page', element_name=PortfolioElement.url_name, element_type=PortfolioElement.type) }}{% if request.query_string.decode() %}?{{ request.query_string.decode() }}{% endif %}">
                             <p>View more</p>  
                             <svg class="icon" style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
                         </a>
@@ -93,9 +93,9 @@
         {% for page_num in PortfolioElements.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
             {% if page_num %}
                 {% if page_num != PortfolioElements.page %}
-                    <a class="btn btn-outline-red" href="{{ url_for('main.portfolio', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-outline-red" href="{{ url_for('main.portfolio', page=page_num) }}&{{ request.query_string.decode() }}">{{ page_num }}</a>
                 {% else %}
-                    <a class="btn btn-red" href="{{ url_for('main.portfolio', page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-red" href="{{ url_for('main.portfolio', page=page_num) }}&{{ request.query_string.decode() }}">{{ page_num }}</a>
                 {% endif %}
             {% else %}
                 ...
