@@ -96,3 +96,15 @@
 
 </div>
 <div class="nav-pos-holder"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $(document).on('click', '.content', function() {
+        console.log('click');
+        $('.content').removeClass('nav-active');
+        $('.navigation').removeClass('nav-active');
+        $('.menu-bar-btn').removeClass('nav-active');
+    });
+});
+</script>
