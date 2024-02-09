@@ -1,0 +1,127 @@
+
+{% include "portfolio.html" %}
+<div class="container container-top">
+    <div class="nav-pos-holder"></div>
+    <div class="content">
+        <div class="section portfolio-element-selected" >
+            <h2 class="section-title">{{ PortfolioElementSelected.name }}</h2>
+            <!-- images -->
+            <div class="portfolio-element-selected-images-section" >
+                <div class="portfolio-element-selected-images-top">
+                    <div class="portfolio-element-selected-images-arrow-left">
+                        <svg style="fill: none;" width="18" height="33" viewBox="0 0 18 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 2L3 17.3735L16 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
+                        </svg>    
+                    </div>
+                    <div class="portfolio-element-selected-images">
+                        <!-- Duplicate last image -->
+                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[-1].image_path) }}" alt="image">
+                        
+
+                        {% for image in OrderedImages %}
+                            <img class="port-elem-sel-image" data-index="{{ loop.index0 }}" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                        {% endfor %}
+                        
+                        <!-- Duplicate first image -->
+                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[0].image_path) }}" alt="image">
+                    </div>
+                    <div  class="portfolio-element-selected-images-arrow-right">
+                        <svg  style="fill: none;"  width="18" height="33" viewBox="0 0 18 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2L15 17.3735L2 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="image-lines portfolio-element-selected-images-bottom">
+                    {% for image in PortfolioElementSelected.images %}
+                        <div class="image-line"></div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="portfolio-element-selected-content">
+                <div class="portfolio-element-selected-left">
+                    <div class="portfolio-element-selected-block-left" >
+                        <div class="portfolio-element-selected-description">
+                            <p>{{ PortfolioElementSelected.description }}</p>
+                        </div>
+                        <div class="portfolio-element-selected-tags">
+                            {% for tag in PortfolioElementSelected.tags %}
+                                <div class="tag-big tag-big-{{ tag.name }}">
+                                    {{ SvgContents[tag.name]|safe }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-element-selected-right">
+                    <div class="portfolio-element-selected-block-right" >
+                        <div class="portfolio-element-selected-comments-top"><p>0 Comments</p> <span><a href="">Login</a> / <a href="">Sign up</a></span></div>
+                        <div class="portfolio-element-selected-comments">
+                            <div class="portfolio-element-selected-comments-add"></div>
+                            <div class="portfolio-element-selected-comments-elements">
+                              
+                                <div class="portfolio-element-selected-comment">
+                                    <div class="comment-image-block">
+                                        <img class="comment-image" src="{{ url_for('static', filename='images/portfolio/comments/default.jpg') }}" alt="image">
+                                    </div>
+                                    <div class="portfolio-element-selected-comment-text">
+                                        <h3>Username</h3>
+                                        <p>Lorem ipsum is simply dummy text of the printing and something bla bla bla</p>        
+                                    </div>
+                                </div>
+
+                                <div class="portfolio-element-selected-comment">
+                                    <div class="comment-image-block">
+                                        <img class="comment-image" src="{{ url_for('static', filename='images/portfolio/comments/6d9da24837fc538f.png') }}" alt="image">
+                                    </div>
+                                    <div class="portfolio-element-selected-comment-text">
+                                        <h3>Username</h3>
+                                        <p>Lorem ipsum is simply dummy text of the printing and something bla bla bla</p>        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-element-selected-bottom">
+                <p>{{ PortfolioElementSelected.date_text }}</p>
+                        <!-- View more link -->
+                        {% if PortfolioElementSelected.type == "project" %}
+                            {% if PortfolioElementSelected.github_link %}
+                                <a class="view-more" href="{{ PortfolioElementSelected.github_link }}">
+                                    <p>View more on Github</p>  
+                                    <svg class="icon" style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><style>.view-more1{fill:none;}</style></defs><title>link</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="view-more1" width="300" height="300"/><path d="M24.23,15.5C17.87,15.52,12.5,27,12.5,27V278A11.5,11.5,0,0,0,24,289.5H275.37a11.5,11.5,0,0,0,11.5-11.5V153.65c0-5.38-4.32-10.7-9.63-11.55a11.55,11.55,0,0,0-13.54,11.33V266.7h-228v-228h113.1A11.72,11.72,0,0,0,160.27,27a11.52,11.52,0,0,0-11.5-11.52Zm182.42,0a11.59,11.59,0,0,0,0,23.17H247.3l-88.92,88.94A11.58,11.58,0,0,0,174.76,144L263.7,55V95.73a11.59,11.59,0,0,0,23.17,0V27a11.5,11.5,0,0,0-11.5-11.5Z"/></g></g></svg>  
+                                </a>
+                            {% endif %}
+                        {% endif %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!-- Script for portfolio element that darken the background and redirect to portfolio page if clicked-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.content').addClass('portfolio-element-active');
+
+    $('.content').click(function(event) {
+        if (event.target === this) {
+            window.location.href = "/portfolio{% if request.query_string.decode() %}?{{ request.query_string.decode()|safe }}{% endif %}";
+        }
+    });
+
+     // Initially set the active class to first
+    var middleIndex = Math.floor($('.image-line').length / 2);
+    $('.image-line').eq(middleIndex).addClass('active');
+    //give active to first line
+    //$('.image-line').eq(0).addClass('active');
+});
+</script>
+ <!-- import portfolio-element.js -->
+ <script src="{{ url_for('static', filename='javascript/portfolio-element.js') }}"></script>
+ 

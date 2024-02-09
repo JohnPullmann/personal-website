@@ -113,7 +113,9 @@
         </div>
         <!-- button -->
         <div class="submit-frame" style="position:relative; ">
-            <button style="width: 100%; max-width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>
+            {{ form.submit(id="submit", class="button-red-outline", style="width: 100%; max-width: 100%;", type="submit") }}
+            {{ form.hidden_tag() }}
+            <!--<button style="width: 100%; max-width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>-->
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
