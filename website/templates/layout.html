@@ -18,8 +18,9 @@
     <div class="container">
         {% include "nav.html" %}
         
-        <div class="content">
-            <div class="sec-nav-pos-holder"></div>
+        <div class="content {{ 'logged-in-content' if current_user.is_authenticated }}">
+            <div class="sec-nav-pos-holder {{ 'logged-in-pos-holder' if current_user.is_authenticated }}"></div>
+
             {% block content %}
             {% endblock content %}
 

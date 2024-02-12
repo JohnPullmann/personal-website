@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="section section-form" id="login" style="padding-top: 15px;">
+    <h2 class="section-title" style="margin-bottom: 15px; font-size: 30px;">Log in</h2> <!-- TODO change from intag styling to main.css-->
+    <form id="form" class="general-form" method="POST">
+        <div class="form-field" style="position:relative;">
+            <!-- email input -->
+            <div>
+                {% if form.email.errors %}
+                    {{ form.email(id="email",  class="input is-invalid",  placeholder="Email", pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(id="email",  class="input",  placeholder="Email", pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}") }}
+                {% endif %} 
+
+                <label for="email">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.91667 22C1.91667 22 0 22 0 20.1667C0 18.3333 1.91667 12.8333 11.5 12.8333C21.0833 12.8333 23 18.3333 23 20.1667C23 22 21.0833 22 21.0833 22H1.91667ZM11.5 11C13.025 11 14.4875 10.4205 15.5659 9.38909C16.6442 8.35764 17.25 6.95869 17.25 5.5C17.25 4.04131 16.6442 2.64236 15.5659 1.61091C14.4875 0.579463 13.025 0 11.5 0C9.97501 0 8.51247 0.579463 7.43414 1.61091C6.3558 2.64236 5.75 4.04131 5.75 5.5C5.75 6.95869 6.3558 8.35764 7.43414 9.38909C8.51247 10.4205 9.97501 11 11.5 11Z"/>
+                    </svg>   
+                        
+                </label>
+            </div>
+        </div>
+        <div class="form-field" style="position:relative; margin-bottom:10px;">
+            <!-- password input -->
+            <div>
+                {% if form.password.errors %}
+                    {{ form.password(id='password', class='input is-invalid', placeholder='Password', required='') }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(id='password', class='input', placeholder='Password', required='') }}
+                {% endif %} 
+                <label for="password">
+
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_294_906)"><path d="M4.33325 22H17.6666C18.2189 22 18.6666 21.5523 18.6666 21V9.66667C18.6666 9.1144 18.2189 8.66667 17.6666 8.66667H16.6666V5.66667C16.6666 2.54207 14.1245 0 10.9999 0C7.87532 0 5.33325 2.54207 5.33325 5.66667V8.66667H4.33325C3.78099 8.66667 3.33325 9.1144 3.33325 9.66667V21C3.33325 21.5523 3.78099 22 4.33325 22ZM11.9999 15.6657V17C11.9999 17.5523 11.5522 18 10.9999 18C10.4477 18 9.99992 17.5523 9.99992 17V15.6657C9.59539 15.3614 9.33325 14.8775 9.33325 14.3333C9.33325 13.4143 10.0809 12.6667 10.9999 12.6667C11.9189 12.6667 12.6666 13.4143 12.6666 14.3333C12.6666 14.8775 12.4045 15.3614 11.9999 15.6657ZM7.33325 5.66667C7.33325 3.64487 8.97812 2 10.9999 2C13.0217 2 14.6666 3.64487 14.6666 5.66667V8.66667H7.33325V5.66667Z"/></g><defs><clipPath id="clip0_294_906"><rect width="22" height="22"/></clipPath></defs>
+                    </svg>
+                        
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form-check" style="margin-left: 5px; margin-bottom: 20px;">
+            {{ form.remember(class="form-check-input") }}
+            Remember Me
+        </div>
+        
+        <!-- button -->
+        <div class="submit-frame" style="position:relative; ">
+            {{ form.submit(id="submit", class="button-red-outline", style="width: 100%; max-width: 100%;", type="submit") }}
+            {{ form.hidden_tag() }}
+            <!--<button style="width: 100%; max-width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>-->
+        </div>
+
+        <div class="form-login-bottom">
+            <small class="text-muted ml-2"> <!-- TODO replace classes-->
+                <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
+            </small>
+
+            <small class="lighter-text"> <!-- TODO replace classes-->
+                Need An Account? <a class="ml-2" href="{{ url_for('users.register') }}">Sign up now</a> <!-- TODO replace classes-->
+            </small>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flask-alert flask-alert-{{ category }}"> <!-- TODO replace classes-->
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </form>
+</div>
+
+
+{% endblock %}

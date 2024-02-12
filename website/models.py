@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from website import database
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
+from website.users.models import User, Portfolio_Comment
 
 class PortfolioElement(database.Model):
     __tablename__ = 'portfolio_element'
@@ -17,6 +18,7 @@ class PortfolioElement(database.Model):
     type = database.Column(database.String(50))
     date_filer_base = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     priority = database.Column(database.Integer, nullable=False, default=0)
+    comments = database.relationship('Portfolio_Comment', backref='portfolio_element', lazy=True)
 
     __mapper_args__ = {
         'polymorphic_identity':'portfolio_element',

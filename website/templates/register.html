@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="section section-form" id="registration" style="padding-top: 15px;">
+    <h2 class="section-title" style="margin-bottom: 15px; font-size: 30px;">Registration</h2> <!-- TODO change from intag styling to main.css-->
+    <form id="form" class="general-form" method="POST">
+        <div class="form-field" style="position:relative;">
+            <!-- username input -->
+            <div>
+                {% if form.username.errors %}
+                    {{ form.username(id="username",  class="input is-invalid",  placeholder="Username", required='') }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(id="username",  class="input",  placeholder="Username", required='') }}
+                {% endif %} 
+                <label for="username">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.91667 22C1.91667 22 0 22 0 20.1667C0 18.3333 1.91667 12.8333 11.5 12.8333C21.0833 12.8333 23 18.3333 23 20.1667C23 22 21.0833 22 21.0833 22H1.91667ZM11.5 11C13.025 11 14.4875 10.4205 15.5659 9.38909C16.6442 8.35764 17.25 6.95869 17.25 5.5C17.25 4.04131 16.6442 2.64236 15.5659 1.61091C14.4875 0.579463 13.025 0 11.5 0C9.97501 0 8.51247 0.579463 7.43414 1.61091C6.3558 2.64236 5.75 4.04131 5.75 5.5C5.75 6.95869 6.3558 8.35764 7.43414 9.38909C8.51247 10.4205 9.97501 11 11.5 11Z"/>
+                    </svg>   
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form-field" style="position:relative;">
+            <!-- email input -->
+            <div>
+                {% if form.email.errors %}
+                    {{ form.email(id="email",  class="input is-invalid",  placeholder="Email", pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(id="email",  class="input",  placeholder="Email", pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}") }}
+                {% endif %} 
+
+                <label for="email">
+                    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.2511 22.15C9.61774 22.15 8.12607 21.8917 6.77607 21.375C5.42607 20.875 4.25941 20.1417 3.27607 19.175C2.30941 18.225 1.55941 17.0917 1.02607 15.775C0.509408 14.4583 0.251074 13 0.251074 11.4C0.251074 9.7 0.517741 8.15833 1.05107 6.775C1.60107 5.375 2.38441 4.18333 3.40107 3.2C4.41774 2.2 5.62607 1.43333 7.02607 0.9C8.44274 0.366666 10.0094 0.0999995 11.7261 0.0999995C13.7594 0.0999995 15.5261 0.491666 17.0261 1.275C18.5427 2.04167 19.7177 3.125 20.5511 4.525C21.3844 5.925 21.8011 7.58333 21.8011 9.5C21.8011 10.9333 21.5927 12.1833 21.1761 13.25C20.7594 14.3 20.1761 15.1083 19.4261 15.675C18.6761 16.2417 17.8011 16.525 16.8011 16.525C15.7677 16.525 14.9511 16.25 14.3511 15.7C13.7677 15.15 13.4344 14.375 13.3511 13.375L14.2761 12.9C13.8761 14.1167 13.2844 15.025 12.5011 15.625C11.7344 16.225 10.8677 16.525 9.90107 16.525C8.53441 16.525 7.47607 16.1 6.72607 15.25C5.97607 14.4 5.60107 13.2417 5.60107 11.775C5.60107 10.5417 5.82607 9.45833 6.27607 8.525C6.74274 7.575 7.37607 6.83333 8.17607 6.3C8.99274 5.75 9.92607 5.475 10.9761 5.475C11.8761 5.475 12.6011 5.69167 13.1511 6.125C13.7177 6.55833 14.1094 7.20833 14.3261 8.075H13.8261L14.2761 5.725H17.0011L15.9761 11.5C15.9261 11.8 15.8844 12.075 15.8511 12.325C15.8177 12.5583 15.8011 12.7667 15.8011 12.95C15.8011 13.45 15.9011 13.8167 16.1011 14.05C16.3011 14.2667 16.6011 14.375 17.0011 14.375C17.4844 14.375 17.9177 14.175 18.3011 13.775C18.6844 13.375 18.9844 12.8083 19.2011 12.075C19.4177 11.325 19.5261 10.4667 19.5261 9.5C19.5261 7.96667 19.2094 6.66667 18.5761 5.6C17.9594 4.53333 17.0677 3.725 15.9011 3.175C14.7511 2.60833 13.3594 2.325 11.7261 2.325C9.92607 2.325 8.35107 2.7 7.00107 3.45C5.65107 4.18333 4.60941 5.23333 3.87607 6.6C3.14274 7.95 2.77607 9.55 2.77607 11.4C2.77607 13.15 3.11774 14.6667 3.80107 15.95C4.50107 17.2333 5.48441 18.2167 6.75107 18.9C8.03441 19.5833 9.53441 19.925 11.2511 19.925C12.4677 19.925 13.5761 19.7583 14.5761 19.425C15.5927 19.1083 16.4927 18.6417 17.2761 18.025L18.3511 19.975C17.5511 20.6583 16.5344 21.1917 15.3011 21.575C14.0844 21.9583 12.7344 22.15 11.2511 22.15ZM10.5011 14.225C11.0844 14.225 11.5927 14.0583 12.0261 13.725C12.4761 13.375 12.8261 12.8833 13.0761 12.25C13.3261 11.6 13.4511 10.8583 13.4511 10.025C13.4511 9.29167 13.2927 8.74167 12.9761 8.375C12.6594 7.99167 12.1677 7.8 11.5011 7.8C10.9177 7.8 10.3927 7.96667 9.92607 8.3C9.47607 8.61667 9.11774 9.075 8.85107 9.675C8.60107 10.2583 8.47607 10.95 8.47607 11.75C8.47607 12.55 8.65107 13.1667 9.00107 13.6C9.35107 14.0167 9.85107 14.225 10.5011 14.225Z"/>
+                    </svg> 
+                        
+                </label>
+            </div>
+        </div>
+        <div class="form-field" style="position:relative;">
+            <!-- password input -->
+            <div>
+                {% if form.password.errors %}
+                    {{ form.password(id='password', class='input is-invalid', placeholder='Password', required='') }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(id='password', class='input', placeholder='Password', required='') }}
+                {% endif %} 
+                <label for="password">
+
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_294_906)"><path d="M4.33325 22H17.6666C18.2189 22 18.6666 21.5523 18.6666 21V9.66667C18.6666 9.1144 18.2189 8.66667 17.6666 8.66667H16.6666V5.66667C16.6666 2.54207 14.1245 0 10.9999 0C7.87532 0 5.33325 2.54207 5.33325 5.66667V8.66667H4.33325C3.78099 8.66667 3.33325 9.1144 3.33325 9.66667V21C3.33325 21.5523 3.78099 22 4.33325 22ZM11.9999 15.6657V17C11.9999 17.5523 11.5522 18 10.9999 18C10.4477 18 9.99992 17.5523 9.99992 17V15.6657C9.59539 15.3614 9.33325 14.8775 9.33325 14.3333C9.33325 13.4143 10.0809 12.6667 10.9999 12.6667C11.9189 12.6667 12.6666 13.4143 12.6666 14.3333C12.6666 14.8775 12.4045 15.3614 11.9999 15.6657ZM7.33325 5.66667C7.33325 3.64487 8.97812 2 10.9999 2C13.0217 2 14.6666 3.64487 14.6666 5.66667V8.66667H7.33325V5.66667Z"/></g><defs><clipPath id="clip0_294_906"><rect width="22" height="22"/></clipPath></defs>
+                    </svg>
+                        
+                </label>
+
+            </div>
+        </div>
+
+        <div class="form-field" style="position:relative;">
+            <!-- confirm password input -->
+            <div>
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(id='confirm_password', class='input is-invalid', placeholder='Confirm password', required='') }}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.confirm_password(id='confirm_password', class='input', placeholder='Confirm password', required='') }}
+                {% endif %} 
+                <label for="confirm_password">
+
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_294_906)"><path d="M4.33325 22H17.6666C18.2189 22 18.6666 21.5523 18.6666 21V9.66667C18.6666 9.1144 18.2189 8.66667 17.6666 8.66667H16.6666V5.66667C16.6666 2.54207 14.1245 0 10.9999 0C7.87532 0 5.33325 2.54207 5.33325 5.66667V8.66667H4.33325C3.78099 8.66667 3.33325 9.1144 3.33325 9.66667V21C3.33325 21.5523 3.78099 22 4.33325 22ZM11.9999 15.6657V17C11.9999 17.5523 11.5522 18 10.9999 18C10.4477 18 9.99992 17.5523 9.99992 17V15.6657C9.59539 15.3614 9.33325 14.8775 9.33325 14.3333C9.33325 13.4143 10.0809 12.6667 10.9999 12.6667C11.9189 12.6667 12.6666 13.4143 12.6666 14.3333C12.6666 14.8775 12.4045 15.3614 11.9999 15.6657ZM7.33325 5.66667C7.33325 3.64487 8.97812 2 10.9999 2C13.0217 2 14.6666 3.64487 14.6666 5.66667V8.66667H7.33325V5.66667Z"/></g><defs><clipPath id="clip0_294_906"><rect width="22" height="22"/></clipPath></defs>
+                    </svg>
+                        
+                </label>
+
+            </div>
+        </div>
+        
+        <!-- button -->
+        <div class="submit-frame" style="position:relative; ">
+            {{ form.submit(id="submit", class="button-red-outline", style="width: 100%; max-width: 100%;", type="submit") }}
+            {{ form.hidden_tag() }}
+            <!--<button style="width: 100%; max-width: 100%;" class="button-red-outline" type="submit"><span>Send message</span></button>-->
+        </div>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flask-alert flask-alert-{{ category }}"> <!-- TODO replace classes-->
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </form>
+</div>
+
+
+{% endblock %}

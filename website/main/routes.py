@@ -9,7 +9,10 @@ from flask import current_app
 from flask import session
 from flask_wtf.csrf import generate_csrf
 from bs4 import BeautifulSoup
-
+from website.users.forms import AddPortfolio_Comment
+from website.models import User, Portfolio_Comment
+from flask_login import current_user
+from datetime import datetime
 
 
 main = Blueprint('main', __name__) 
@@ -76,12 +79,20 @@ def toggle_theme():
     session['theme'] = theme
     return '', 204
 
-@main.route('/portfolio/<string:element_type>/<string:element_name>')
+@main.route('/portfolio/<string:element_type>/<string:element_name>', methods=['GET', 'POST'])
 def portfolio_element_page(element_type, element_name):
-    # portfolio element route
-
     #get the element from the database
     element = PortfolioElement.query.filter_by(type=element_type, url_name=element_name).first_or_404()
+    
+    form = AddPortfolio_Comment()
+    if form.validate_on_submit():
+        comment = Portfolio_Comment(user_id=current_user.id, author_object=current_user, content=form.content.data, date_posted=datetime.utcnow(), portfolio_element_id=element.id)
+        with current_app.app_context():
+            database.session.add(comment)
+            database.session.commit()
+        return redirect(url_for('main.portfolio_element_page', element_type=element_type, element_name=element_name))
+    # portfolio element route
+
     OrderedImages = element.images[1:len(element.images)//2+1] + [element.images[0]] + element.images[len(element.images)//2+1:]
 
     # Read the SVG files and store their contents in a dictionary
@@ -102,4 +113,4 @@ def portfolio_element_page(element_type, element_name):
     PortfolioElements = filter_portfolio_elements(button, search, sort)
     PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
-    return render_template('portfolio_element.html', title='Portfolio', PortfolioElements=PortfolioElements, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)
+    return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)

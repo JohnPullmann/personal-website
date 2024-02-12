@@ -5,8 +5,28 @@
     <span></span>
 </a>
 <!-- burger menu button end -->
-<div class="secondary-bar">
-    <div class="menu-bar-btn-pos-holder"></div>
+<div class="secondary-bar nav-sec-box-effect {{ 'logged-in-nav' if current_user.is_authenticated }}">
+    <ul class="secondary-bar-items">
+        {% if current_user.is_authenticated %}
+        
+            <li>
+                <a href="{{ url_for('users.account') }}"><img class="rounded-circle account-img" src=" {{ url_for('static', filename='images/users/profile_pics/' + current_user.image_file) }} " style="width: 40px; height:40px; object-fit: fill;"></a>
+            </li>    
+            <li style="padding-left: 0; margin-right: auto;" class="username">
+                <a href="{{ url_for('users.account') }}"><b>{{ current_user.username}}</b> </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('users.account') }}">Account</a>
+            </li>    
+            <li>
+                <a href="{{ url_for('users.logout', next=request.url) }}">Logout</a>
+            </li>
+        {% endif %}
+        <li>
+            <div class="menu-bar-btn-pos-holder"></div>
+        </li>
+    </ul>
 </div>
 <!-- secondary bar end -->
 
@@ -22,7 +42,7 @@
     </div>
 
     <ul class="nav-menu">
-        <li class="nav-list-item">
+        <li class="nav-list-item" style="margin-top:auto;">
             <a href="{{ url_for('main.home') }}" class="{{ 'active' if request.path == url_for('main.home') }}">
                 <svg class="icon" style="width: 2.2rem; height: 2.2rem;" xmlns="http://www.w3.org/2000/svg" width="32" height="30" viewBox="0 0 32 30" fill="none">
                     <path d="M2.625 30C2.625 30 0 30 0 27.5C0 25 2.625 17.5 15.75 17.5C28.875 17.5 31.5 25 31.5 27.5C31.5 30 28.875 30 28.875 30H2.625ZM15.75 15C17.8386 15 19.8416 14.2098 21.3185 12.8033C22.7953 11.3968 23.625 9.48912 23.625 7.5C23.625 5.51088 22.7953 3.60322 21.3185 2.1967C19.8416 0.790177 17.8386 0 15.75 0C13.6614 0 11.6584 0.790177 10.1815 2.1967C8.70469 3.60322 7.875 5.51088 7.875 7.5C7.875 9.48912 8.70469 11.3968 10.1815 12.8033C11.6584 14.2098 13.6614 15 15.75 15Z"/>
@@ -40,7 +60,7 @@
                 <h3>PORTFOLIO</h3>
             </a>
         </li>
-        <li class="nav-list-item">
+        <li class="nav-list-item" style="margin-bottom:auto;">
             <a href="{{ url_for('main.resume') }}" class="{{ 'active' if request.path == url_for('main.resume') }}">
                 <svg class="icon" style="width: 2.2rem; height: 2.2rem;" xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 24 30" fill="none">
                     <path d="M14.586 0H4C2.93913 0 1.92172 0.395088 1.17157 1.09835C0.421427 1.80161 0 2.75544 0 3.75V26.25C0 27.2446 0.421427 28.1984 1.17157 28.9016C1.92172 29.6049 2.93913 30 4 30H20C21.0609 30 22.0783 29.6049 22.8284 28.9016C23.5786 28.1984 24 27.2446 24 26.25V8.82562C23.9999 8.32838 23.7891 7.85155 23.414 7.5L16 0.549375C15.625 0.19772 15.1164 0.000106195 14.586 0ZM15 6.5625V2.8125L21 8.4375H17C16.4696 8.4375 15.9609 8.23996 15.5858 7.88832C15.2107 7.53669 15 7.05978 15 6.5625ZM5 16.875C4.73478 16.875 4.48043 16.7762 4.29289 16.6004C4.10536 16.4246 4 16.1861 4 15.9375C4 15.6889 4.10536 15.4504 4.29289 15.2746C4.48043 15.0988 4.73478 15 5 15H19C19.2652 15 19.5196 15.0988 19.7071 15.2746C19.8946 15.4504 20 15.6889 20 15.9375C20 16.1861 19.8946 16.4246 19.7071 16.6004C19.5196 16.7762 19.2652 16.875 19 16.875H5ZM4 19.6875C4 19.4389 4.10536 19.2004 4.29289 19.0246C4.48043 18.8488 4.73478 18.75 5 18.75H19C19.2652 18.75 19.5196 18.8488 19.7071 19.0246C19.8946 19.2004 20 19.4389 20 19.6875C20 19.9361 19.8946 20.1746 19.7071 20.3504C19.5196 20.5262 19.2652 20.625 19 20.625H5C4.73478 20.625 4.48043 20.5262 4.29289 20.3504C4.10536 20.1746 4 19.9361 4 19.6875ZM5 24.375C4.73478 24.375 4.48043 24.2762 4.29289 24.1004C4.10536 23.9246 4 23.6861 4 23.4375C4 23.1889 4.10536 22.9504 4.29289 22.7746C4.48043 22.5988 4.73478 22.5 5 22.5H13C13.2652 22.5 13.5196 22.5988 13.7071 22.7746C13.8946 22.9504 14 23.1889 14 23.4375C14 23.6861 13.8946 23.9246 13.7071 24.1004C13.5196 24.2762 13.2652 24.375 13 24.375H5Z"/>
@@ -49,6 +69,19 @@
                 <h3>RESUME</h3>
             </a>
         </li>
+
+        <li class="nav-list-item nav-menu-item-login-register">
+            {% if not current_user.is_authenticated %}
+                <span class="nav-menu-login-register">
+                    <a class="nav-menu-login {{ 'active' if request.path == url_for('users.login') }}" href="{{ url_for('users.login', next=request.url) }}">Login</a>
+                    <span class="nav-menu-login-register-spacer"><p style="font-size: var(--font-size-nav-secondary); display: inline-flex; margin: 0;"> / </p></span>
+                    <a class="nav-menu-register {{ 'active' if request.path == url_for('users.register') }}" href="{{ url_for('users.register', next=request.url) }}">Register</a>
+                </span>
+            {% endif %}
+
+        </li>
+
+
     </ul>
 
     <div class="color-theme-toggler">

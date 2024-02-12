@@ -55,22 +55,30 @@
                 </div>
                 <div class="portfolio-element-selected-right">
                     <div class="portfolio-element-selected-block-right" >
-                        <div class="portfolio-element-selected-comments-top"><p>0 Comments</p> <span><a href="">Login</a> / <a href="">Sign up</a></span></div>
+                        <div class="portfolio-element-selected-comments-top">
+                            <p>0 Comments</p> 
+                            {% if not current_user.is_authenticated %}
+                                <span><a href="{{ url_for('users.login', next=request.url) }}">Login</a> / <a href="{{ url_for('users.register', next=request.url) }}">Sign up</a>
+                            {% endif %}
+                            </span>
+                        </div>
                         <div class="portfolio-element-selected-comments">
-                            <div class="portfolio-element-selected-comments-add"></div>
+                            <div class="portfolio-element-selected-comments-add">
+                                <div>
+                                    <img class="comment-image" src="{{ url_for('static', filename='images/portfolio/comments/default.jpg') }}" alt="image">
+                                </div>
+                                <div class="portfolio-element-selected-comments-formblock">
+                                    <form action="" method="POST">
+                                        {{ form.content(id="portfolio-comment-content", class="p-e-s-comment-add-input", placeholder="Add a comment ...", required="") }}
+                                        {{ form.submit(id="p-e-s-comment-add-submit",  class="p-e-s-comment-add-submit", type="submit", value="Comment") }}
+                                        {{ form.hidden_tag() }}
+                                    </form>
+                                </div>
+                            </div>
                             <div class="portfolio-element-selected-comments-elements">
                               
-                                <div class="portfolio-element-selected-comment">
-                                    <div class="comment-image-block">
-                                        <img class="comment-image" src="{{ url_for('static', filename='images/portfolio/comments/default.jpg') }}" alt="image">
-                                    </div>
-                                    <div class="portfolio-element-selected-comment-text">
-                                        <h3>Username</h3>
-                                        <p>Lorem ipsum is simply dummy text of the printing and something bla bla bla</p>        
-                                    </div>
-                                </div>
 
-                                <div class="portfolio-element-selected-comment">
+                                <div class="portfolio-element-selected-comment"> <!-- TODO Remove this-->
                                     <div class="comment-image-block">
                                         <img class="comment-image" src="{{ url_for('static', filename='images/portfolio/comments/6d9da24837fc538f.png') }}" alt="image">
                                     </div>
@@ -79,6 +87,24 @@
                                         <p>Lorem ipsum is simply dummy text of the printing and something bla bla bla</p>        
                                     </div>
                                 </div>
+
+                                <!-- Dynamicly add comments of PortfolioElementSelected--> 
+                                {% for comment in PortfolioElementSelected.comments %}
+                                    <div class="portfolio-element-selected-comment">
+                                        <div class="comment-image-block">
+                                            <img class="comment-image" src="{{ url_for('static', filename='images/users/profile_pics/' + comment.author_object.image_file) }}" alt="image">
+                                        </div>
+                                        <div class="portfolio-element-selected-comment-text">
+                                            <!--if it is current youser just write You-->
+                                            {% if comment.author_object == current_user %}
+                                                <h3><b>You</b></h3>
+                                            {% else %}
+                                                <h3>{{ comment.author_object.username }}</h3>
+                                            {% endif %}
+                                            <p>{{ comment.content }}</p>        
+                                        </div>
+                                    </div>
+                                {% endfor %}
 
                             </div>
                         </div>
