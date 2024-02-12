@@ -73,10 +73,6 @@ def account():
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 
-
-
-
-
 @users.route('/reset_password', methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:

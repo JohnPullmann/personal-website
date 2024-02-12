@@ -1256,6 +1256,23 @@ footer p {
     margin-right: 10px;
     flex: 1;
 }
+.portfolio-element-selected-comments-formblock form p {
+    font-size: 13px; /*TODO replace with variable*/
+    text-align: end;
+    color: var(--lighter-text-color);
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.portfolio-element-selected-comments-formblock form {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-element-selected-comments-formblock form input {
+    align-self: flex-end;
+    margin-top: 8px;
+}
+
 
 .p-e-s-comment-add-input {
     height: 50px;
@@ -1318,6 +1335,7 @@ footer p {
     border-radius: 7%;
     padding: 45px;
     max-width: 1000px;
+    align-self: center;
 
 }
 
@@ -1332,7 +1350,7 @@ footer p {
 }
 
 .portfolio-element-selected-block-right {
-    width: 325px;
+    width: 100%;
     align-self: flex-end;
 }
 
@@ -1884,9 +1902,10 @@ content (after 1025px)
         width: calc((11vw * 1.90 * 3));
     }
     
-
-
-    
+    .portfolio-element-selected-comments-elements {
+        max-height: 225px;
+        overflow: auto;
+    }
 
 }
 /* ------------------------------
