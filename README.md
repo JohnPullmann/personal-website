@@ -6,6 +6,7 @@
 # Personal Website
 [![Python Badge]][Python]
 [![Flask Badge]][Flask]
+[![Javascript Badge]][Javascript]
 
 </div>
 
@@ -31,3 +32,6 @@ Ján Pullmann - john.pullmann@gmail.com
 
 [Flask Badge]: https://img.shields.io/badge/Flask-0c967a?logo=flask&logoColor=fff&style=for-the-badge
 [Flask]: https://flask.palletsprojects.com/
+
+[Javascript Badge]: https://img.shields.io/badge/Javascript-F0DB4F?logo=javascript&logoColor=fff&style=for-the-badge
+[Javascript]: https://www.javascript.com/
