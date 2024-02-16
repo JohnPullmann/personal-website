@@ -64,6 +64,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             setTimeout(scrollToActiveImage, 0);
         });
+    
+
+    // Move the active class to the left secondary arrow
+    document.querySelector('.portfolio-element-selected-secondary-arrow-left').addEventListener('click', function() {
+        var active = document.querySelector('.image-line.active');
+        if (active.previousElementSibling) {
+            active.classList.remove('active');
+            active.previousElementSibling.classList.add('active');
+        } else {
+            active.classList.remove('active');
+            imageLines[imageLines.length - 1].classList.add('active');
+        }
+        setTimeout(scrollToActiveImage, 0);
+    });
+
+    // Move the active class to the right secondary arrow
+    document.querySelector('.portfolio-element-selected-secondary-arrow-right').addEventListener('click', function() {
+        var active = document.querySelector('.image-line.active');
+        if (active.nextElementSibling) {
+            active.classList.remove('active');
+            active.nextElementSibling.classList.add('active');
+        } else {
+            active.classList.remove('active');
+            imageLines[0].classList.add('active');
+        }
+        setTimeout(scrollToActiveImage, 0);
+    });
     }
 
     // Function to scroll the .portfolio-element-selected-images container to the active image

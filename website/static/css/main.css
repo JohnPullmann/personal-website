@@ -8,6 +8,7 @@
     --font-weight-extra-bold: 700;
 
     --font-size-1: 24px; 
+    --font-size-p: 16px;
     --font-size-hero-big: 68px;
     --font-size-hero-medium: 42px;
     --font-size-hero-small: 30px;
@@ -19,10 +20,11 @@
     --font-size-port-title: 26px;
     --font-size-port-description: 18px;
     --font-size-port-date: 20px;
-    --font-size-port-selected-bottom: 22px;
+    --font-size-port-selected-bottom: 18px;
     --font-size-contact-form: 20px;
     --font-size-contact-label: 11px;
     --font-size-button-base: 16px;
+    --font-size-resume-lang: 20px;
 
     --background-color: #1E1E28;
     --text-color: #FFFFFF;
@@ -109,10 +111,11 @@
     --font-size-port-title: 26px;
     --font-size-port-description: 18px;
     --font-size-port-date: 20px;
-    --font-size-port-selected-bottom: 22px;
+    --font-size-port-selected-bottom: 18px;
     --font-size-contact-form: 20px;
     --font-size-contact-label: 11px;
     --font-size-button-base: 16px;
+    --font-size-resume-lang: 20px;
     
     --Container-background: #FFFFFF99;
     --Container-border: #FFFFFF80;
@@ -353,13 +356,16 @@ body {
     color: var(--button-red-text-color);
     text-align: center;
     font-family: var(--nav-font-secondary);
-    font-size: var(--font-size-1);
+    font-size: var(--font-size-1); /*TODO*/
     font-style: normal;
     font-weight: var(--font-weight-normal);
     line-height: normal;
 
     max-width: 310px;
     height:45px;
+    padding: 4px;
+    padding-left: 60px;
+    padding-right: 60px;
     cursor: pointer;
     border-radius: 25px;
     border: solid 3px transparent;
@@ -368,6 +374,10 @@ body {
     background-clip: content-box, border-box;
     box-shadow: 2px 1000px 1px var(--shadow-color1) inset, 0 0 6px 0 rgba(157, 96, 212, 0.5);
     transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button.button-red-outline {
+    padding: 0;
 }
 
 .button-red-outline:hover {
@@ -381,7 +391,8 @@ body {
     background-image: var(--button-red-gradient);
     background-clip: border-box;
     box-shadow: none;
-    color: var(--text-color);
+    color: var(--background-color);
+    font-weight: var(--font-weight-bold);
 }
 .button-red-outline.chosen:hover {
     box-shadow: 0 0 6px 0 var(--shadow-color2), 0 0 15px 10px var(--shadow-color3);
@@ -458,7 +469,7 @@ h2.hero-text span {
     display:flex;
     flex: 1 0 100%;
     justify-content: center;
-    margin: 0px 0 25px 0;
+    margin: 0px 0 5px 0;
     font-size: var(--font-size-section-title);
     font-weight: var(--font-weight-bold);
     color: var(--text-color);
@@ -1156,7 +1167,6 @@ footer p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 200px;
     align-items: center;
     justify-content: center;
 }
@@ -1188,6 +1198,12 @@ footer p {
     margin-top: 10px;
 }
 
+.image-lines {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .portfolio-element-selected-images-bottom .image-line {
     width: 30px;
     height: 5px;
@@ -1212,6 +1228,10 @@ footer p {
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
+}
+
+.portfolio-element-selected-secondary-arrow-right, .portfolio-element-selected-secondary-arrow-left {
+    display: none;
 }
 
 .portfolio-element-selected-content {
@@ -1281,7 +1301,7 @@ footer p {
     border: var(--icon-color) 3px solid;
     flex: 1;
     width: 100%;
-    font-size: 11px; /*TODO replace with variable*/
+    font-size: 13px; /*TODO replace with variable*/
     /*align text to top*/
     align-items: flex-start;
     padding:7px;
@@ -1293,7 +1313,7 @@ footer p {
     color: var(--icon-color);
     text-align: center;
     font-family: var(--nav-font-secondary);
-    font-size: 11px; /*TODO replace with variable*/
+    font-size: 13px; /*TODO replace with variable*/
 
     padding: 2px;
     padding-left: 20px;
@@ -1345,6 +1365,15 @@ footer p {
     left: 0;
 }
 
+.download-button-lang {
+    font-size: var(--font-size-resume-lang);
+    line-height: 8px;
+}
+
+.download-buttons {
+    gap: 10%;
+}
+
 .portfolio-element-selected-description {
     margin-top: 10px;
 }
@@ -1372,13 +1401,13 @@ footer p {
 }
 
 .portfolio-element-selected-comment-text h3 {
-    font-size: 15px;
+    font-size: 16px;
     margin-top: 6px;
     margin-bottom: 3px;
 }
 
 .portfolio-element-selected-comment-text p {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 0;
 }
 
@@ -1406,12 +1435,14 @@ footer p {
     align-items: center;
 }
 
-.view-more svg {
+.view-more svg, .view-more-secondary svg {
     margin-left: 4px;
     margin-bottom: 4px;
 }
 
-
+.view-more-secondary {
+    display: none;
+}
 
 
 .form-field input, .form-field textarea {
@@ -1442,6 +1473,12 @@ footer p {
 
 .form-field svg {
     fill: var(--form-icon-color);
+}
+
+.section-form {
+    max-width: 850px;
+    width: 100%;
+    align-self: center;
 }
 
 .contact-form label, .general-form label {
@@ -1503,7 +1540,7 @@ footer p {
     width: 80%;
     height: 1140px;
     width: 820px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-bottom: 50px;
 }
 
@@ -1687,6 +1724,10 @@ select.filter-input {
     margin: 30px;
 }
 
+p {
+    font-size: var(--font-size-p);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -1723,9 +1764,12 @@ content (after 1360px)
         --font-size-hero-small: calc(20px + 1vw);
 
         --font-size-section-sub-title: calc(15px + 1.4vw);
+        --font-size-footer: calc(12px + 1.2vw);
 
         --font-size-port-description: calc(6px + 0.85vw);
         --font-size-port-date: calc(8px + 0.85vw);
+
+        --font-size-p: calc(13px + 0.2vw);
         }
 
     .light-theme {
@@ -1803,8 +1847,14 @@ content (after 1025px)
         --font-size-port-description: calc(6px + 0.9vw);
         --font-size-port-date: calc(8px + 0.9vw);
         --font-size-1: calc(10px + 1.3vw);
-        
-        --font-size-section-title: calc(15px + 2vw);
+        --font-size-resume-lang: calc(8px + 1.3vw);
+
+        --font-size-section-title: calc(25px + 1vw);
+
+        --font-size-port-selected-bottom: calc(8px + 1.1vw);
+        --font-size-contact-form: 17px;
+
+        --portfolio-element-selected-images-size: calc(10vw + 30px);
         }
     
     /*Resume*/
@@ -1814,7 +1864,7 @@ content (after 1025px)
         width: 100%;
         padding-bottom: 139%; /* Adjust this value based on the aspect ratio of the PDF */
         overflow: hidden;
-        margin-top: 50px;
+        margin-top: 40px;
         margin-bottom: 50px;
     }
     
@@ -1825,6 +1875,14 @@ content (after 1025px)
         width: 100%;
         height: 100%;
         margin: 0;
+    }
+
+    .download-button-lang {
+        line-height: calc(0.8vw);
+    }
+
+    .download-button {
+        width: 225px !important;
     }
 
     /*Portfolio*/
@@ -1898,13 +1956,99 @@ content (after 1025px)
         height: var(--portfolio-element-selected-images-size);
     }
 
+    .portfolio-element-selected-images-top {
+        width: 100%;
+        justify-content: center;
+    }
+
     .portfolio-element-selected-images {
-        width: calc((11vw * 1.90 * 3));
+        width: calc((var(--portfolio-element-selected-images-size) * 1.90 * 3));
     }
     
     .portfolio-element-selected-comments-elements {
         max-height: 225px;
         overflow: auto;
+    }
+
+    .portfolio-element-selected-images-arrow-right, .portfolio-element-selected-images-arrow-left {
+        display: none;
+    }
+
+    .portfolio-element-selected-secondary-arrow-right, .portfolio-element-selected-secondary-arrow-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        /*
+        margin: 0 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        */
+    }
+
+    .portfolio-element-selected-secondary-arrow-right svg, .portfolio-element-selected-secondary-arrow-left svg {
+        height: 24px !important;
+    }
+    
+    .networking-icon, .coding-icon {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .networking-title, .coding-title {
+        font-size: 22px;
+    }
+
+    .skills-section {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    .filters-type button, .filter-input {
+        height: 50px;
+    }
+
+    .form-field input, .form-field textarea {
+        padding: 6px;
+        padding-left: 65px;
+        min-height: 40px;
+    }
+
+    .section-form svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .contact-form label, .general-form label { 
+        padding-top: 11px !important;
+        padding-left: 5px;
+    }
+
+    .section-form {
+        max-width: 700px;
+    }
+
+    .section-form h2 {
+        font-size: 25px !important;
+    }
+
+    .section-form .button-red-outline {
+        height: 40px;
+    }
+
+    .form-check {
+        font-size: 13px !important;
+    }
+
+    .form-check-input { 
+        height: 0.75rem;
+        width: 0.75rem;
+        font-size: 14px !important;
+    }
+
+    .form-check .form-check-input {
+        float: left;
+        margin-left: -1.2em;
     }
 
 }
@@ -1920,20 +2064,23 @@ content (after 650px)
         --font-size-section-sub-title: calc(6px + 2.5vw);
         --font-size-footer: calc(12px + 2vw);    
 
-        --font-size-hero-big: calc(40px + 1.8vw);
-        --font-size-hero-medium: calc(25px + 1.1vw);
-        --font-size-hero-small: calc(15px + 1vw);
+        --font-size-hero-big: calc(34px + 1.8vw);
+        --font-size-hero-medium: calc(20px + 1.1vw);
+        --font-size-hero-small: calc(14px + 1vw);
 
 
         --font-size-port-title: calc(12px + 1.8vw);
         --font-size-port-description: calc(10px + 1.3vw);
         --font-size-port-date: calc(11px + 1.3vw);
 
+        --font-size-contact-form: 15px;
+
+        --portfolio-element-selected-images-size: calc(10.5vw + 15px);
     }
 
     .content {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
         margin-left: 0;
         margin-right: 0;
     }
@@ -1944,8 +2091,20 @@ content (after 650px)
         margin-left: 0;
         margin-right: 0;
 
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
+    .section-no-outline {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .portfolio-element-selected {
+        margin-top: 120px;
+    }
+
+    
     .my-skill-section {
         gap: 10%;
         padding-left: 20px;
@@ -1962,14 +2121,17 @@ content (after 650px)
         padding-right: 20px;
     }
 
+    
     .hobbies-section {
         flex-direction: row;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .hobbies-element {
         flex: 1 0 100%;
         flex-direction: column;
-        margin: 10px 0px 10px 0;
+        margin: 0;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -1978,17 +2140,21 @@ content (after 650px)
     }
 
     .hobbies-element div {
-        margin-top: 10px;
-        margin-bottom: 10px;   
+        margin-top: 5px;
+        margin-bottom: 5px;   
     }
 
-
+    .hobbies-icon-border-1, .hobbies-icon-border-2, .hobbies-icon-border-3, .hobbies-icon-border-4 {
+        width: 85px;
+        height: 85px;
+        border-width: 4px;
+    } 
 
     .hobbies-element h3, .hobbies-element p {
         min-width: 20px;
-        margin-right: 10px;
+        margin-right: 0;
     }
-
+    
     .section-hero {
         margin-left: 15px;
     }
@@ -2048,8 +2214,248 @@ content (after 650px)
     }
 
     .portfolio-element-selected-images {
-        width: calc((11vw * 1.95 * 3));
+        width: calc((var(--portfolio-element-selected-images-size) * 2 * 3));
+    }
+
+    .portfolio-element-selected-bottom {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .portfolio-element-selected-bottom p {
+        font-size: calc(15px + 0.2vw); /*TODO replace with variable*/
+        margin: 5px;
     }
 
 
+    .view-more-secondary {
+        display: flex;
+        justify-content: center;
+    }
+
+    .view-more-secondary p {
+        margin-bottom: 0px;
+    }
+
+    .portfolio-element-selected-bottom .view-more {
+        display: none;
+    }
+
+    .button-red-outline {
+        padding: 5px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .portfolio-element-selected-right {
+        padding-bottom: 10px;
+    }
+
+    .portfolio-element-selected {
+        padding-bottom: 20px;
+    }
+
+    h2.hero-text {
+        margin-bottom: 10px;
+    }
+
+    .networking-icon, .coding-icon {
+        width: 90px !important;
+        height: 90px !important;
+    }
+
+    .networking-title, .coding-title {
+        font-size: 20px;
+    }
+
+    .skills-section {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+
+    .secondary-bar {
+        min-height: 40px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 0;
+    }
+
+    .menu-bar-btn-pos-holder {
+        width: 40px;
+        height: 40px;
+    }
+
+    .secondary-bar .account-img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .form-field input, .form-field textarea {
+        padding: 6px;
+        padding-left: 55px;
+        min-height: 40px;
+    }
+    /*----------------------------- burger button -----------------------------*/
+    
+    .menu-bar-btn {
+        top: -26px;
+        right: -15px;
+    }
+    
+    .menu-bar-btn span, .menu-bar-btn span:after, .menu-bar-btn span:before {
+        width: calc(27px * 0.7);
+        height: calc(5.4px * 0.7);
+    }
+
+    .menu-bar-btn span {
+        margin: 7px 0 0;
+    }
+    
+    .menu-bar-btn span:before {
+        top: -7px;
+    }
+
+    .menu-bar-btn span:after {
+        top: 7px;
+    }
+    
+    .menu-bar-btn.nav-active {
+        transform: translateX(-185px);
+    }
+    
+    /*-----Navigation-----*/
+    .sec-nav-pos-holder { 
+        min-height: 40px;
+        margin-bottom: 3rem;
+    }
+    
+    .navigation .nav-top a img {
+        width: 7rem;
+        height: 7rem;
+        margin-bottom: 1rem;
+        margin: 0 2rem 1rem 2rem;
+    }
+    
+    .navigation .nav-top a h2 {
+        font-size: 28px; /*TODO*/
+    }
+    
+    .navigation .nav-menu a {
+        padding: 14px 0;
+        padding-left: 45px;
+    }
+    
+    .navigation .nav-menu a h3 {
+        margin-left: 0.2rem;
+        font-size: 20px; /*TODO*/
+    }
+    
+    .navigation .nav-bottom {
+        margin-bottom: 1.5rem;
+    }
+    
+    .nav-bottom {
+        width: 85%;
+        max-width: 90%;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .nav-bottom svg {
+        width: 30px;
+        height: 30px;
+        margin: 4px; 
+    }
+
+    .nav-bottom {
+        display: flex;
+        width: 100%;
+    }
+
+    .social-media-inactive, .social-media-active {
+        left: 10px; /*---*/
+    }
+
+    .navigation .nav-list-item svg {
+        height: 25px !important; 
+        margin: 5px;
+
+    }
+
+    .nav-menu-register, .nav-menu-login, .nav-menu-login-register-spacer  {
+        font-size: 22px;
+        padding-bottom: 5px !important;
+    }
+    .nav-menu-login-register-spacer {
+        padding-top: 12px !important; 
+    }
+
+    .navigation {
+        width: 250px;
+    }
+
+    /*-------------------------------------------------------------------------*/
+
+    .color-theme-toggler {
+        height: 25px;
+        width: 64px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+
+    .color-theme-toggler svg {
+        width: 50%;
+        height: 100%;
+        padding: 2px;
+        
+    }
+
+    .color-theme-toggler svg.active {
+        border-radius: 6px;
+    }
+
+    .resume-holder {
+        margin-top: 30px;
+    }
+
+    .button-red-outline.download-button {
+        font-size: 16px !important;
+        line-height: 28px;
+        height: 55px !important;
+        width: 200px !important;
+        gap: 5% !important;
+    }
+
+    .download-button-lang {
+        font-size: 14px !important;
+    }
+
+    .download-buttons {
+        gap: 5%;
+    }
+
+    .section-form small {
+        font-size: 12px;
+    }
+
+    .filters-type button {
+        flex: 1 1 30% !important;
+        min-width: 0 !important;
+        padding: 5px;
+
+        
+        margin-top: 5px;
+        margin-bottom: 5px;
+        
+        height: auto;
+    }
+
+    .filters-javascript {
+        margin-bottom: 0;
+    }
+
+    
 }

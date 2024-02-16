@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="row-elements  center-elements" style="gap: 10%">
-    <a href="{{ url_for('static', filename='JohnPullmann-Resume.pdf') }}" class="button-red-outline download-button" Download style="width:300px; height:60px; border-radius: 50px;">Download<br><p style="font-size: 20px;line-height: 8px;">EN PDF</p><br></a>
-    <a href="{{ url_for('static', filename='JánPullmann-Životopis.pdf') }}" class="button-red-outline download-button" Download style="width:300px; height:60px; border-radius: 50px;">Download<br><p style="font-size: 20px;line-height: 8px;">SK PDF</p><br></a>
+<div class="row-elements  center-elements download-buttons">
+    <a href="{{ url_for('static', filename='Jan Pullmann Resume EN.pdf') }}" class="button-red-outline download-button" Download style="width:300px; height:70px; border-radius: 50px; font-size: 24px;">Download<br><p class="download-button-lang" style=" font-size: 20px;">EN PDF</p><br></a>
+    <a href="{{ url_for('static', filename='Ján Pullmann Resume SK.pdf') }}" class="button-red-outline download-button" Download style="width:300px; height:70px; border-radius: 50px; font-size: 24px;">Download<br><p class="download-button-lang" style=" font-size: 20px;">SK PDF</p><br></a>
     <!--
     <button class="button-red-outline" type="button" style="width:300px; height:60px; border-radius: 50px;">Download<br><p style="font-size: 20px;line-height: 20px;">EN PDF</p></button>
     <button class="button-red-outline" type="button" style="width:300px; height:60px;; border-radius: 50px;">Download<br><p style="font-size: 20px;line-height: 20px;">SK PDF</p></button>
     -->
 </div>
 <div class="center-elements resume-holder">
-    <object class="embeded-pdf"  data="{{ url_for('static', filename='JohnPullmann-Resume.pdf') }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf">
+    <object class="embeded-pdf"  data="{{ url_for('static', filename='Jan Pullmann Resume EN.pdf') }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf">
         <iframe class="embeded-pdf"  src="https://drive.google.com/file/d/1WYKwLiXLY3bSvguMmhSHKdpkpdtz47ZV/preview?usp=sharing" frameborder="0"></iframe>   
     </object>
 </div>

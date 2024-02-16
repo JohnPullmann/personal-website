@@ -1,5 +1,7 @@
 testing-popullate-database.py
 website/settings.py
+website/static/images/portfolio/comments/
+website/static/images/users/profile_pics/
 #website/static/images/portfolio/
 #website/site.db
 **/__pycache__/
