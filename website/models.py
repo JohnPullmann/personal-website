@@ -31,7 +31,8 @@ class PortfolioElement(database.Model):
         return self.date_filer_base
 
     def __repr__(self):
-        return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}, {self.images_small}')"
+        return f"PortfolioElement('{self.name}', '{self.type}', {self.date_filter})"
+        #return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}, {self.images_small}')"
 
 class Image(database.Model):
     __tablename__ = 'image'
@@ -71,7 +72,8 @@ class Project(PortfolioElement):
         return self.date
 
     def __repr__(self):
-        return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}, {self.images_small}')"
+        return f"Project('{self.name}', '{self.type}', {self.date_text})"
+        #return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}, {self.images_small}')"
 
 
 class Work(PortfolioElement):
@@ -97,7 +99,8 @@ class Work(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
+        return f"Work('{self.name}', '{self.type}', {self.date_text})"
+        #return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
 
 
 class Education(PortfolioElement):
@@ -123,7 +126,8 @@ class Education(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
+        return f"Education('{self.name}', '{self.type}', {self.date_text})"
+        #return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
 
 
 class Certification(PortfolioElement):
@@ -148,4 +152,5 @@ class Certification(PortfolioElement):
         return self.first_acquired
 
     def __repr__(self):
-        return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}, {self.images_small}')"
+        return f"Certification('{self.name}', '{self.type}', {self.first_acquired}, {self.valid_ranges})"
+        #return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}, {self.images_small}')"

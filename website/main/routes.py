@@ -4,7 +4,7 @@ from flask_mail import Message
 from website import mail, database
 from website.models import PortfolioElement, Project, Work, Education, Certification
 from sqlalchemy import desc, asc, union_all
-from website.main.utils import filter_portfolio_elements
+from website.main.utils import filter_portfolio_elements, build_portfolio_timeline
 from flask import current_app
 from flask import session
 from flask_wtf.csrf import generate_csrf
@@ -64,7 +64,9 @@ def portfolio():
     PortfolioElements = filter_portfolio_elements(button, search, sort)
     PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
-    return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements)
+    portfolio_timeline = build_portfolio_timeline() # TODO global creating
+
+    return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements, timeline=portfolio_timeline)
 
 
 @main.route('/resume')
@@ -113,4 +115,6 @@ def portfolio_element_page(element_type, element_name):
     PortfolioElements = filter_portfolio_elements(button, search, sort)
     PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
-    return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)
+    portfolio_timeline = build_portfolio_timeline() # TODO global creating
+
+    return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, timeline=portfolio_timeline, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)

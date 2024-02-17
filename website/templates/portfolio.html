@@ -2,8 +2,73 @@
 
 {% block content %}
 
-<div class="timeline center-elements" style="border: solid 2px; border-radius: 25px; height: 100px;">
+<div style="font-size: 0; overflow: hidden; white-space: nowrap; padding: 5px; padding-top: 20px;" class="">
+    <!--
     <h2>Here will be timeline</h2>
+    <p>
+        {% for month in timeline %}
+            {% if month[-2:] == "12" %}
+                [{{ month }}]
+                <b>{{ month[:4] }}</b>  
+            {% else %}
+                [{{ month }}]
+            {% endif %}
+            
+        {% endfor %}
+    </p>
+    -->
+    {% for month in timeline %}
+        <div class="timeline-month" style="display: inline; position: relative; ">
+            {% if month[-2:] == "12" %}
+                <!-- [{{ month }}] -->
+                <svg style="z-index: 0; fill:#3d3e47; height:14px; width: 16px; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><title>base</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="16" height="14"/></g></g></svg>
+                <p style="font-size: 20px; display: inline; vertical-align: middle; margin-left: 12px; margin-right: 12px;"><b>{{ month[:4] }}</b></p>  
+            {% else %}
+                <svg style="z-index: 0; fill:#3d3e47; height:14px; width: 16px; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><title>base</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="16" height="14"/></g></g></svg>
+                <!-- [{{ month }}] -->
+            {% endif %}
+
+            {% for education in timeline[month]['education'] %}
+                {% if education[0] == 's' %}
+                    <svg style="fill:#e94700; position: absolute; left: -3px; top: -18px; z-index: 2; height:16px; width: 27px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style>.up-start</style></defs><title>up-start</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-start" cx="8" cy="8" r="8"/><path class="up-start" d="M5,13H19S30,4,26,3H12S1,12,5,13Z"/></g></g></svg>
+                {% elif education[0] == 'i' %}
+                    <svg style="fill:#e94700; position: absolute; left: -3px; z-index: 2; height:10px; width: 29px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style>.up-base</style></defs><title>up</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="up-base" d="M.88,10h20s11-9,7-10h-20s-11,9-7,10"/></g></g></svg>
+                {% elif education[0] == 'e' %}
+                    <svg style="fill:#e94700; position: absolute; left: -3px; z-index: 2; height:16px; width: 28px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style>.up-end{}</style></defs><title>up-end</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-end" cx="9.88" cy="8" r="8"/><path class="up-end" d="M14.88,13H.88c-4-1,7-10,7-10h1l6,10"/></g></g></svg>
+                {% endif %}
+                <!--
+                <p style="font-size: 16px; display: inline; vertical-align: middle;"><b>E</b></p>  
+                -->
+            {% endfor %}
+            {% for work in timeline[month]['work'] %}
+                {% if work[0] == 's' %}
+                    <svg style="fill:#0087e9; position: absolute; left: -3px; top: 2px; z-index: 4; height:16px; width: 27px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style></style></defs><title>down-start</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-start" cx="8" cy="8" r="8"/><path class="down-start" d="M5,3H19s11,9,7,10H12S1,4,5,3Z"/></g></g></svg>
+                {% elif work[0] == 'i' %}
+                    <svg style="fill:#0087e9; position: absolute; left: -3px; top: 5px; z-index: 4; height:10px; width: 29px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style></style></defs><title>down</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="down-base" d="M.88,0h20s11,9,7,10h-20s-11-9-7-10"/></g></g></svg>
+                {% elif work[0] == 'e' %}
+                    <svg style="fill:#0087e9; position: absolute; left: -3px; top: 5px; z-index: 4; height:16px; width: 28px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>down-end</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-end" cx="9.88" cy="8" r="8"/><path class="down-end" d="M14.88,3H.88c-4,1,7,10,7,10h1l6-10"/></g></g></svg>
+                {% endif %}
+                <!--
+                <p style="font-size: 16px; display: inline; vertical-align: middle;"><b>W</b></p>  
+                -->
+            {% endfor %}
+            {% for event in timeline[month]['events'] %}
+                <!--
+                <svg style="fill:#b9b6bb; position: absolute; top: -24px; left: 4px; z-index: 3; height: 35px; width: 9px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 35"><defs><style></style></defs><title>event-point</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point" x="2" y="6" width="5" height="29" rx="2.5"/><circle class="event-point" cx="4.5" cy="4.5" r="4.5"/></g></g></svg>
+                
+
+                <p style="font-size: 16px; display: inline; vertical-align: middle;"><b>O</b></p>  
+
+                <svg style="fill:#b9b6bb; position: absolute; top: -28px; left: 4px; z-index: 3; height: 41px; width: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 41"><defs><style>.event-point</style></defs><title>event-point4</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point" x="3" y="8" width="5" height="33" rx="2.5"/><circle class="event-point" cx="5.5" cy="5.5" r="5.5"/></g></g></svg>
+                <svg style="fill:#b9b6bb; position: absolute; top: -32px; left: 4px; z-index: 3; height: 46px; width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 46"><defs><style></style></defs><title>event-point5</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point5" x="4" y="13" width="7" height="33" rx="2.5"/><circle class="event-point5" cx="7.5" cy="7.5" r="7.5"/></g></g></svg>
+
+                <svg style="fill:#b9b6bb; position: absolute; top: -28px; left: 4px; z-index: 3; height: 41px; width: 11px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 41"><defs><style>.event-point3</style></defs><title>event-point3</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point3" x="2" y="8" width="7" height="33" rx="2.5"/><circle class="event-point3" cx="5.5" cy="5.5" r="5.5"/></g></g></svg>
+                -->
+                <svg style="fill:#b9b6bb; position: absolute; top: -29px; left: 4px; z-index: 3; height: 43px; width: 12px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 43"><defs><style>.event-point6</style></defs><title>event-point6</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point6" x="3" y="10" width="6" height="33" rx="2.5"/><circle class="event-point6" cx="6" cy="6" r="6"/></g></g></svg>
+                
+            {% endfor %}
+        </div>
+    {% endfor %}
 </div>
 
 <div class="center-elements column-elements section-no-outline filters filters-javascript">
