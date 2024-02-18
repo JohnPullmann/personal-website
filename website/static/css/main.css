@@ -287,17 +287,21 @@
 .timeline-cover {
     position: relative;
     font-size: 0; 
-    overflow: hidden; 
-    white-space: nowrap; 
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     padding: 5px; 
     padding-top: 80px; 
     padding-bottom: 80px
+}
+.timeline-cover::-webkit-scrollbar { /* For Chrome, Safari and Opera */
+    display: none;
 }
 
 .timeline-spacer {
     display: inline; 
     position: relative; 
-    width: 70px; 
+    width: 75px; 
     height: 5px;
 }
 .timeline-spacer svg {
@@ -310,7 +314,7 @@
 
 .timeline-arrow-left, .timeline-arrow-right {
     position:absolute;
-    bottom: 0px;
+    top: -45px;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
@@ -381,6 +385,7 @@
     fill:#e94700; 
     position: absolute; 
     left: -3px; 
+    top: -18px;  
     z-index: 2; 
     height:16px; 
     width: 28px;
@@ -390,7 +395,7 @@
     fill:#0087e9; 
     position: absolute; 
     left: -3px; 
-    top: 5px; 
+    top: 2px; 
     z-index: 4; 
     height:16px; 
     width: 28px;
@@ -570,6 +575,21 @@
 .timeline-month:hover .timeline-month-event-month {
     opacity: 1;
     top: -58px;
+}
+
+
+.timespan-path {
+    font-size: 0px; 
+    align-self: flex-start; 
+    margin-bottom: 0; 
+    color: var(--lighter-text-color);
+}
+.timespan-path-element {
+    font-size: 20px;
+    color: var(--lighter-text-color);
+}
+.timespan-path-element:hover {
+    color: var(--text-color);
 }
 
 /*-------------*/
@@ -1907,6 +1927,7 @@ a:hover {
 }
 
 .filters {
+    position: relative;
     margin-bottom: 25px;
     margin-top: 20px;
 }

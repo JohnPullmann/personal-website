@@ -13,3 +13,17 @@ menuBarButton.addEventListener('click', function(event) {
     navigation.classList.toggle('nav-active');
     content.classList.toggle('nav-active');
 });
+
+
+// Portfolio Timeline scrolling
+$(document).ready(function(){
+    $(".timeline-arrow-right").click(function(){
+      $(".timeline-cover").animate({scrollLeft: '+=275'}, 800);
+    });
+    $(".timeline-arrow-left").click(function(){
+      $(".timeline-cover").animate({scrollLeft: '-=275'}, 800);
+    });
+});
+$(document).ready(function(){
+    $(".timeline-cover").animate({scrollLeft: $(".timeline-cover").prop('scrollWidth')}, 1500);
+});

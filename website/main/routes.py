@@ -67,7 +67,7 @@ def portfolio():
 
     portfolio_timeline = build_portfolio_timeline() # TODO global creating
 
-    return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements, timeline=portfolio_timeline)
+    return render_template('portfolio.html', title='Portfolio', PortfolioElements=PortfolioElements, timeline=portfolio_timeline, timespan=timespan, button=button, sort=sort, search=search)
 
 
 @main.route('/resume')
@@ -119,4 +119,4 @@ def portfolio_element_page(element_type, element_name):
 
     portfolio_timeline = build_portfolio_timeline() # TODO global creating
 
-    return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, timeline=portfolio_timeline, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)
+    return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, timeline=portfolio_timeline, timespan=timespan, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)

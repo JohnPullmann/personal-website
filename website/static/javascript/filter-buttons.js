@@ -48,6 +48,20 @@ function submitWithButton() {
         input.value = button.textContent;
         form.appendChild(input);
     }
+
+    // Get the timespan value from the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var timespan = urlParams.get('timespan');
+
+    // Add the timespan value as a hidden input field
+    if (timespan) {
+        var timespanInput = document.createElement('input');
+        timespanInput.type = 'hidden';
+        timespanInput.name = 'timespan';
+        timespanInput.value = timespan;
+        form.appendChild(timespanInput);
+    }
+    
     form.submit();
 }
 

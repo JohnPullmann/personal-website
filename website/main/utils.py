@@ -26,25 +26,8 @@ def filter_portfolio_elements(button, search=None, sort=None, timespan=None):
     else:
         PortfolioElements = Model.query
 
-    # Apply sorting if sort parameter is present
-    if sort == 'newest':
-        PortfolioElements = PortfolioElements.order_by(desc(Model.date_filter))
-    elif sort == 'oldest':
-        PortfolioElements = PortfolioElements.order_by(asc(Model.date_filter))
-    elif sort == 'alphabetically':
-        PortfolioElements = PortfolioElements.order_by(asc(Model.name))
-    else:
-        PortfolioElements = PortfolioElements.order_by(desc(Model.priority))
-
     # Apply timespan filter if timespan parameter is present
     if timespan:
-        #timespan_parts = timespan.split('-')
-        #year = int(timespan_parts[0])
-        #PortfolioElements = PortfolioElements.filter(extract('year', Model.date_filter) == year)
-        #if len(timespan_parts) > 1:
-        #    month = int(timespan_parts[1])
-        #    PortfolioElements = PortfolioElements.filter(extract('month', Model.date_filter) == month)
-
         timespan_parts = timespan.split('-')
         timespan_year = int(timespan_parts[0])
 
@@ -58,7 +41,15 @@ def filter_portfolio_elements(button, search=None, sort=None, timespan=None):
         # Convert list to Query object
         PortfolioElements = Model.query.filter(Model.id.in_([element.id for element in PortfolioElements]))
 
-
+    # Apply sorting if sort parameter is present
+    if sort == 'newest':
+        PortfolioElements = PortfolioElements.order_by(desc(Model.date_filter))
+    elif sort == 'oldest':
+        PortfolioElements = PortfolioElements.order_by(asc(Model.date_filter))
+    elif sort == 'alphabetically':
+        PortfolioElements = PortfolioElements.order_by(asc(Model.name))
+    else:
+        PortfolioElements = PortfolioElements.order_by(desc(Model.priority))
 
 
     return PortfolioElements
@@ -71,23 +62,23 @@ def build_portfolio_timeline():
     PortfolioElements = PortfolioElement.query.order_by(asc(PortfolioElement.date_filter))
 
     start_date = PortfolioElements[0].date_filter
-    date = start_date
-    end_date = datetime.now()  # today
+    date = start_date.replace(day=1)
+    end_date = datetime.now() # today
     while date <= end_date:
         # Add an entry to PortfolioTimeline for this month
         PortfolioTimeline[date.strftime('%Y-%m')] = {'education': {}, 'work': {}, 'events': {}}
-        date += timedelta(days=30)
-    
+        date += relativedelta(months=1)
+    #pprint(PortfolioTimeline)
     for element in PortfolioElements:
         # Determine the type of the element
         element.type
         if element.type in ['education', 'work']:
-            element_type = 'work' if element.type == 'work' else 'education'
+            element_type = element.type
 
             element_start_date = element.date_start.replace(day=1)
             element_date = element_start_date
-            element_end_date = element.date_end.replace(day=1) if element.date_end else datetime.today().replace(day=1) +  timedelta(days=30)
-            while element_date <= element_end_date:
+            element_end_date = element.date_end.replace(day=1)+relativedelta(months=3) if element.date_end else datetime.today().replace(day=1) + relativedelta(months=3)
+            while element_date <= element_end_date and element_date <= end_date:
                 if element_date.month == element_start_date.month and element_date.year == element_start_date.year:
                     status = 's'
                 elif element_date.month == element_end_date.month and element_date.year == element_end_date.year:
@@ -95,7 +86,7 @@ def build_portfolio_timeline():
                 else:
                     status = 'i'
                 PortfolioTimeline[element_date.strftime('%Y-%m')][element_type][f"{status}-{element.url_name}"] = element
-                element_date += timedelta(days=30)
+                element_date += relativedelta(months=1)
             ...
         elif element.type in ['certification']:
             element_type = 'events'
@@ -109,7 +100,7 @@ def build_portfolio_timeline():
         #    PortfolioTimeline[date.strftime('%Y-%m')][element_type][element.url_name] = element
         #    date += timedelta(days=30)
 
-    #pprint(PortfolioTimeline)
+    pprint(PortfolioTimeline)
 
 
 

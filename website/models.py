@@ -42,8 +42,13 @@ class PortfolioElement(database.Model):
     @property
     def element_timespan(self):
         if self.date_start:
-            self.date_end = self.date_end if self.date_end else datetime.now()
-            return [d for d in rrule(MONTHLY, dtstart=self.date_start, until=self.date_end)]
+            end_backup = self.date_end if self.date_end else datetime.today()
+            self.date_end = self.date_end.replace(day=1) if self.date_end else datetime.today().replace(day=1)
+            dates = [d for d in rrule(MONTHLY, dtstart=self.date_start, until=self.date_end)]
+            if self.date_end not in dates:
+                dates.append(self.date_end)
+            self.date_end = end_backup
+            return dates
         else:
             return [self.date_filter]
 

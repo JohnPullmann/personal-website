@@ -1,20 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<!-- Current timeline path-->
+{% if timespan != None and timespan != "" %}
+<p class="timespan-path">
+    <a href="{{ url_for('main.portfolio') + '?timespan=' }}">
+        <span class="timespan-path-element">/All/</span>
+    </a>
+    <a href="{{ url_for('main.portfolio') + '?timespan='+timespan[:4] }}">
+        <span class="timespan-path-element">{{timespan[:4]}}/</span>
+    </a>
+    {% if timespan|length >4 %}
+        <a href="{{ url_for('main.portfolio') + '?timespan='+timespan }}">
+            <span class="timespan-path-element">{{ timespan[5:] }}/</span>
+        </a>
+    {% endif %}
+</p>
+{% endif %}
 
 <div class="timeline-cover">
     <div class="timeline-spacer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 14"><g id="Spacer" data-name="Spacer"><g id="Spacer1-2" data-name="Spacer"><rect class="spacer"/></g></g></svg></div>
-    
-    <div class="timeline-arrow-left">
-        <svg style="fill: none;" width="18" height="33" viewBox="0 0 18 33" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 2L3 17.3735L16 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
-        </svg>    
-    </div>
-    <div  class="timeline-arrow-right">
-        <svg  style="fill: none;"  width="18" height="33" viewBox="0 0 18 33" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L15 17.3735L2 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-    </div>
 
     {% for month in timeline %}
         <a class="timeline-timespan-link" href="{{ url_for('main.portfolio') + '?timespan='+month }}">
@@ -95,8 +100,20 @@
         
             <input class="filter-input"  type="text" id="search" name="search"  placeholder="Search..."  onkeydown="if (event.key === 'Enter') submitWithButton()" >
         </form>
-
     </div>
+
+    <!-- Arrows for timeline -->
+    <div class="timeline-arrow-left">
+        <svg style="fill: none;" width="18" height="33" viewBox="0 0 18 33" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L3 17.3735L16 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
+        </svg>    
+    </div>
+    <div  class="timeline-arrow-right">
+        <svg  style="fill: none;"  width="18" height="33" viewBox="0 0 18 33" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L15 17.3735L2 31" stroke="#DEDEDE" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+    </div>
+    
 </div>
 
 <div class="section-no-outline portfolio-elements">
