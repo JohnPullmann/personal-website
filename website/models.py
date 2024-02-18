@@ -4,6 +4,9 @@ from website import database
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
 from website.users.models import User, Portfolio_Comment
+from sqlalchemy.ext.declarative import declared_attr
+from dateutil.relativedelta import relativedelta
+from dateutil.rrule import rrule, MONTHLY
 
 class PortfolioElement(database.Model):
     __tablename__ = 'portfolio_element'
@@ -21,15 +24,28 @@ class PortfolioElement(database.Model):
     priority = database.Column(database.Integer, nullable=False, default=0)
     comments = database.relationship('Portfolio_Comment', backref='portfolio_element', lazy=True)
 
+    date_start = database.Column(database.DateTime, default=None)
+    date_end = database.Column(database.DateTime, default=None)
+
     __mapper_args__ = {
         'polymorphic_identity':'portfolio_element',
         'polymorphic_on':type
     }
 
+
     #this is used to filter the portfolio elements by date if no button is selected
     @hybrid_property
     def date_filter(self):
         return self.date_filer_base
+
+    #this is for timespan filtering from timeline
+    @property
+    def element_timespan(self):
+        if self.date_start:
+            self.date_end = self.date_end if self.date_end else datetime.now()
+            return [d for d in rrule(MONTHLY, dtstart=self.date_start, until=self.date_end)]
+        else:
+            return [self.date_filter]
 
     def __repr__(self):
         return f"PortfolioElement('{self.name}', '{self.type}', {self.date_filter})"
@@ -80,9 +96,7 @@ class Project(PortfolioElement):
 class Work(PortfolioElement):
     __tablename__ = 'work'
     id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), primary_key=True)
-    date_start = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
-    date_end = database.Column(database.DateTime, default=None)
-    date_text = database.Column(database.String(100), nullable=False, default=date_start + ' - ' + date_end)
+    date_text = database.Column(database.String(100), nullable=False, default=PortfolioElement.date_start + ' - ' + PortfolioElement.date_end)
     work_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {
@@ -107,9 +121,7 @@ class Work(PortfolioElement):
 class Education(PortfolioElement):
     __tablename__ = 'education'
     id = database.Column(database.Integer, database.ForeignKey('portfolio_element.id'), primary_key=True)
-    date_start = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
-    date_end = database.Column(database.DateTime, default=None)
-    date_text = database.Column(database.String(100), nullable=False, default=date_start + ' - ' + date_end)
+    date_text = database.Column(database.String(100), nullable=False, default=PortfolioElement.date_start + ' - ' + PortfolioElement.date_end)
     education_link = database.Column(database.String(100), default=None)
 
     __mapper_args__ = {

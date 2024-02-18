@@ -60,8 +60,9 @@ def portfolio():
     button = request.args.get('button')
     sort = request.args.get('sort')
     search = request.args.get('search')
+    timespan = request.args.get('timespan')
 
-    PortfolioElements = filter_portfolio_elements(button, search, sort)
+    PortfolioElements = filter_portfolio_elements(button, search, sort, timespan)
     PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
     portfolio_timeline = build_portfolio_timeline() # TODO global creating
@@ -112,7 +113,8 @@ def portfolio_element_page(element_type, element_name):
     button = request.args.get('button')
     sort = request.args.get('sort')
     search = request.args.get('search')
-    PortfolioElements = filter_portfolio_elements(button, search, sort)
+    timespan = request.args.get('timespan')
+    PortfolioElements = filter_portfolio_elements(button, search, sort, timespan)
     PortfolioElements = PortfolioElements.paginate(page=page, per_page=4)
 
     portfolio_timeline = build_portfolio_timeline() # TODO global creating

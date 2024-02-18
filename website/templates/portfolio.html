@@ -17,53 +17,61 @@
     </div>
 
     {% for month in timeline %}
-        <div class="timeline-month" style="display: inline; position: relative; ">
-
-            <!-- base -->
-            <svg class="timeline-month-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="16" height="14"/></g></g></svg>
-            
+        <a class="timeline-timespan-link" href="{{ url_for('main.portfolio') + '?timespan='+month }}">
             <!-- years -->
-            {% if month[-2:] == "12" %}
+            {% if month[-2:] == "01" %}
+            <a class="timeline-timespan-year-link" href="{{ url_for('main.portfolio') + '?timespan='+month[:4] }}">
                 <p class="timeline-years"><b>{{ month[:4] }}</b></p>  
+            </a>
             {% endif %}
+            
+            <div class="timeline-month" style="display: inline; position: relative; ">
 
-            <!-- month elements parts -->
-            {% for education in timeline[month]['education'] %}
-                {% if education[0] == 's' %}
-                    <svg class="timeline-month-education-start" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style>.up-start</style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-start" cx="8" cy="8" r="8"/><path class="up-start" d="M5,13H19S30,4,26,3H12S1,12,5,13Z"/></g></g></svg>
-                    <p class="timeline-month-education-name"><b>{{ timeline[month]['education'][education].timeline_name }}</b></p>
+                <!-- base -->
+                <svg class="timeline-month-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="16" height="14"/></g></g></svg>
+
+                <!-- month elements parts -->
+                {% for education in timeline[month]['education'] %}
+                    {% if education[0] == 's' %}
+                        <svg class="timeline-month-education-start" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style>.up-start</style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-start" cx="8" cy="8" r="8"/><path class="up-start" d="M5,13H19S30,4,26,3H12S1,12,5,13Z"/></g></g></svg>
+                        <a class="timeline-text-link" href="{{ url_for('main.portfolio_element_page', element_name=timeline[month]['education'][education].url_name, element_type=timeline[month]['education'][education].type) }}{% if request.query_string.decode() %}?{{ request.query_string.decode() }}{% endif %}">
+                            <p class="timeline-month-education-name"><b>{{ timeline[month]['education'][education].timeline_name }}</b></p>
+                            <p class="timeline-month-education-day">{{ timeline[month]['education'][education].date_filter.strftime('%d') }}</p>
+                            <p class="timeline-month-education-month">{{ timeline[month]['education'][education].date_filter.strftime('%b') }}</p>
+                        </a>    
+                    {% elif education[0] == 'i' %}
+                        <svg class="timeline-month-education-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style>.up-base</style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="up-base" d="M.88,10h20s11-9,7-10h-20s-11,9-7,10"/></g></g></svg>
+                    {% elif education[0] == 'e' %}
+                        <svg class="timeline-month-education-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-end" cx="9.88" cy="8" r="8"/><path class="up-end" d="M14.88,13H.88c-4-1,7-10,7-10h1l6,10"/></g></g></svg>
+                    {% endif %}
+
+                {% endfor %}
+                {% for work in timeline[month]['work'] %}
+                    {% if work[0] == 's' %}
+                        <svg class="timeline-month-work-start" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-start" cx="8" cy="8" r="8"/><path class="down-start" d="M5,3H19s11,9,7,10H12S1,4,5,3Z"/></g></g></svg>
+                        <a class="timeline-text-link" href="{{ url_for('main.portfolio_element_page', element_name=timeline[month]['work'][work].url_name, element_type=timeline[month]['work'][work].type) }}{% if request.query_string.decode() %}?{{ request.query_string.decode() }}{% endif %}">
+                            <p class="timeline-month-work-name"><b>{{ timeline[month]['work'][work].timeline_name }}</b></p>
+                            <p class="timeline-month-work-day">{{ timeline[month]['work'][work].date_filter.strftime('%d') }}</p>
+                            <p class="timeline-month-work-month">{{ timeline[month]['work'][work].date_filter.strftime('%b') }}</p>
+                        </a>
+                    {% elif work[0] == 'i' %}
+                        <svg class="timeline-month-work-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="down-base" d="M.88,0h20s11,9,7,10h-20s-11-9-7-10"/></g></g></svg>
+                    {% elif work[0] == 'e' %}
+                        <svg class="timeline-month-work-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-end" cx="9.88" cy="8" r="8"/><path class="down-end" d="M14.88,3H.88c-4,1,7,10,7,10h1l6-10"/></g></g></svg>
+                    {% endif %}
+
+                {% endfor %}
+                {% for event in timeline[month]['events'] %}
+                    <svg class="timeline-month-event-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 43"><defs><style>.event-point6</style></defs><title>{{timeline[month]['events'][event].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point6" x="3" y="10" width="6" height="33" rx="2.5"/><circle class="event-point6" cx="6" cy="6" r="6"/></g></g></svg>
                     
-                    <p class="timeline-month-education-day">{{ timeline[month]['education'][education].date_filter.strftime('%d') }}</p>
-                    <p class="timeline-month-education-month">{{ timeline[month]['education'][education].date_filter.strftime('%b') }}</p>
-                {% elif education[0] == 'i' %}
-                    <svg class="timeline-month-education-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style>.up-base</style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="up-base" d="M.88,10h20s11-9,7-10h-20s-11,9-7,10"/></g></g></svg>
-                {% elif education[0] == 'e' %}
-                    <svg class="timeline-month-education-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-end" cx="9.88" cy="8" r="8"/><path class="up-end" d="M14.88,13H.88c-4-1,7-10,7-10h1l6,10"/></g></g></svg>
-                {% endif %}
-
-            {% endfor %}
-            {% for work in timeline[month]['work'] %}
-                {% if work[0] == 's' %}
-                    <svg class="timeline-month-work-start" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-start" cx="8" cy="8" r="8"/><path class="down-start" d="M5,3H19s11,9,7,10H12S1,4,5,3Z"/></g></g></svg>
-                    <p class="timeline-month-work-name"><b>{{ timeline[month]['work'][work].timeline_name }}</b></p>
-                
-                    <p class="timeline-month-work-day">{{ timeline[month]['work'][work].date_filter.strftime('%d') }}</p>
-                    <p class="timeline-month-work-month">{{ timeline[month]['work'][work].date_filter.strftime('%b') }}</p>
-                {% elif work[0] == 'i' %}
-                    <svg class="timeline-month-work-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="down-base" d="M.88,0h20s11,9,7,10h-20s-11-9-7-10"/></g></g></svg>
-                {% elif work[0] == 'e' %}
-                    <svg class="timeline-month-work-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>{{timeline[month]['work'][work].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="down-end" cx="9.88" cy="8" r="8"/><path class="down-end" d="M14.88,3H.88c-4,1,7,10,7,10h1l6-10"/></g></g></svg>
-                {% endif %}
-
-            {% endfor %}
-            {% for event in timeline[month]['events'] %}
-                <svg class="timeline-month-event-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 43"><defs><style>.event-point6</style></defs><title>{{timeline[month]['events'][event].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="event-point6" x="3" y="10" width="6" height="33" rx="2.5"/><circle class="event-point6" cx="6" cy="6" r="6"/></g></g></svg>
-                <p class="timeline-month-event-name"><b>{{ timeline[month]['events'][event].timeline_name }}</b></p>
-                
-                <p class="timeline-month-event-day">{{ timeline[month]['events'][event].date_filter.strftime('%d') }}</p>
-                <p class="timeline-month-event-month">{{ timeline[month]['events'][event].date_filter.strftime('%b') }}</p>
-            {% endfor %}
-        </div>
+                    <a class="timeline-text-link" href="{{ url_for('main.portfolio_element_page', element_name=timeline[month]['events'][event].url_name, element_type=timeline[month]['events'][event].type) }}{% if request.query_string.decode() %}?{{ request.query_string.decode() }}{% endif %}">
+                        <p class="timeline-month-event-name"><b>{{ timeline[month]['events'][event].timeline_name }}</b></p>
+                        <p class="timeline-month-event-day">{{ timeline[month]['events'][event].date_filter.strftime('%d') }}</p>
+                        <p class="timeline-month-event-month">{{ timeline[month]['events'][event].date_filter.strftime('%b') }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </a>
     {% endfor %}
     <div class="timeline-spacer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 14"><title>spacer</title><g id="Spacer" data-name="Spacer"><g id="Spacer1-2" data-name="Spacer"><rect class="spacer"/></g></g></svg></div>
 </div>

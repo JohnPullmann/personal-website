@@ -269,6 +269,18 @@
 .tag-big-Flask svg {
     border: 3px solid #5EA944;
 }
+.tag-big-Java svg {
+    border: 3px solid #cf7b15;
+}
+.tag-big-C svg {
+    border: 3px solid #0c5fad;
+}
+.tag-big-SQL svg {
+    border: 3px solid #00a0cc;
+}
+.tag-big-Linux svg {
+    border: 3px solid #000000;
+}
 /*-------------*/
 
 /*Timeline*/
@@ -306,9 +318,11 @@
     padding-right: 10px;
     cursor: pointer;
 }
+/*
 .timeline-arrow-left svg, .timeline-arrow-right svg {
  
 }
+*/
 .timeline-arrow-left {
     left: 0;
 }
@@ -389,6 +403,9 @@
     z-index: 2; 
     height:10px; 
     width: 29px;
+}
+.timeline-month:hover {
+    fill:#fa5812
 }
 
 .timeline-month-work-inprogress {
@@ -1634,7 +1651,7 @@ footer p {
 }
 
 .portfolio-element-selected {
-    z-index: 3;
+    z-index: 5;
     min-height: 40vh;
     border-radius: 7%;
     padding: 45px;

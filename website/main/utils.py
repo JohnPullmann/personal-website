@@ -6,8 +6,10 @@ from sqlalchemy import desc, asc, union_all
 from sqlalchemy.orm import aliased
 from datetime import datetime, timedelta
 from pprint import pprint
+from sqlalchemy import or_, and_, extract, text
+from dateutil.relativedelta import relativedelta
 
-def filter_portfolio_elements(button, search=None, sort=None):
+def filter_portfolio_elements(button, search=None, sort=None, timespan=None):
     switch = {
         'Projects': Project,
         'Work': Work,
@@ -33,6 +35,30 @@ def filter_portfolio_elements(button, search=None, sort=None):
         PortfolioElements = PortfolioElements.order_by(asc(Model.name))
     else:
         PortfolioElements = PortfolioElements.order_by(desc(Model.priority))
+
+    # Apply timespan filter if timespan parameter is present
+    if timespan:
+        #timespan_parts = timespan.split('-')
+        #year = int(timespan_parts[0])
+        #PortfolioElements = PortfolioElements.filter(extract('year', Model.date_filter) == year)
+        #if len(timespan_parts) > 1:
+        #    month = int(timespan_parts[1])
+        #    PortfolioElements = PortfolioElements.filter(extract('month', Model.date_filter) == month)
+
+        timespan_parts = timespan.split('-')
+        timespan_year = int(timespan_parts[0])
+
+        # Filter portfolio elements
+        if len(timespan_parts) > 1:
+            timespan_month = int(timespan_parts[1])
+            PortfolioElements = [element for element in PortfolioElements if any(date.year == timespan_year and date.month == timespan_month for date in element.element_timespan)]
+        else:
+            PortfolioElements = [element for element in PortfolioElements if any(date.year == timespan_year for date in element.element_timespan)]
+
+        # Convert list to Query object
+        PortfolioElements = Model.query.filter(Model.id.in_([element.id for element in PortfolioElements]))
+
+
 
 
     return PortfolioElements
