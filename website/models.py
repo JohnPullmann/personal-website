@@ -9,6 +9,7 @@ class PortfolioElement(database.Model):
     __tablename__ = 'portfolio_element'
     id = database.Column(database.Integer, primary_key=True)
     url_name = database.Column(database.String(100), nullable=False)
+    timeline_name = database.Column(database.String(100), nullable=False)
     name = database.Column(database.String(100), nullable=False)
     description = database.Column(database.Text, nullable=False)
     tags = database.relationship('Tag', lazy='subquery',

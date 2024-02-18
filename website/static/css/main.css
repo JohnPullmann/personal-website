@@ -269,7 +269,291 @@
 .tag-big-Flask svg {
     border: 3px solid #5EA944;
 }
+/*-------------*/
 
+/*Timeline*/
+.timeline-cover {
+    position: relative;
+    font-size: 0; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    padding: 5px; 
+    padding-top: 80px; 
+    padding-bottom: 80px
+}
+
+.timeline-spacer {
+    display: inline; 
+    position: relative; 
+    width: 70px; 
+    height: 5px;
+}
+.timeline-spacer svg {
+    z-index: 0; 
+    fill:transparent; 
+    height:14px; 
+    width: 70px; 
+    vertical-align: middle;
+}
+
+.timeline-arrow-left, .timeline-arrow-right {
+    position:absolute;
+    bottom: 0px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+.timeline-arrow-left svg, .timeline-arrow-right svg {
+ 
+}
+.timeline-arrow-left {
+    left: 0;
+}
+.timeline-arrow-right {
+    right: 0;
+}
+
+.timeline-month-base {
+    z-index: 0; 
+    fill:#3d3e47; 
+    height:14px; 
+    width: 16px; 
+    vertical-align: middle;
+}
+
+.timeline-month {
+    cursor: pointer;
+} 
+
+.timeline-years {
+    position: relative;
+    top: 0px;
+    font-size: 20px; 
+    display: inline; 
+    vertical-align: middle;
+    margin-left: 12px; 
+    margin-right: 12px;
+}
+.timeline-years:hover {
+
+    top: -5px;
+    font-size: 30px; 
+}
+
+.timeline-month-education-start {
+    fill:#e94700; 
+    position: absolute; 
+    left: -3px; 
+    top: -18px; 
+    z-index: 2; 
+    height:16px; 
+    width: 27px;
+}
+
+.timeline-month-work-start {
+    fill:#0087e9; 
+    position: absolute; 
+    left: -3px; 
+    top: 2px; 
+    z-index: 4; 
+    height:16px; 
+    width: 27px;
+}
+
+.timeline-month-education-end {
+    fill:#e94700; 
+    position: absolute; 
+    left: -3px; 
+    z-index: 2; 
+    height:16px; 
+    width: 28px;
+}
+
+.timeline-month-work-end {
+    fill:#0087e9; 
+    position: absolute; 
+    left: -3px; 
+    top: 5px; 
+    z-index: 4; 
+    height:16px; 
+    width: 28px;
+}
+
+.timeline-month-education-inprogress {
+    fill:#e94700; 
+    position: absolute; 
+    left: -3px; 
+    z-index: 2; 
+    height:10px; 
+    width: 29px;
+}
+
+.timeline-month-work-inprogress {
+    fill:#0087e9; 
+    position: absolute; 
+    left: -3px; 
+    top: 5px; 
+    z-index: 4; 
+    height:10px; 
+    width: 29px;
+}
+
+.timeline-month-event-pointer {
+    fill:#b9b6bb; 
+    position: absolute; 
+    top: -29px;
+    left: 4px; 
+    z-index: 3; 
+    height: 43px; 
+    width: 12px;
+}
+
+.timeline-month-education-name {
+    position: absolute; 
+    transform: translateX(-50%); 
+    z-index: 1; 
+    top: -60px; /*-95*/
+    left:5px; 
+    font-size: 20px; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-education-name {
+    top: -95px; /*-95*/
+}
+
+.timeline-month-education-day {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: -40px; 
+    left:5px; 
+    font-size: 20px; 
+    font-weight: 350; 
+    vertical-align: middle;
+
+
+}
+.timeline-month:hover .timeline-month-education-day {
+    opacity: 1;
+    top: -70px; 
+}
+
+.timeline-month-education-month {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: -23px; 
+    left:5px; 
+    font-size: 22px; 
+    font-weight: 500; 
+    vertical-align: middle;
+
+}
+.timeline-month:hover .timeline-month-education-month {
+    opacity: 1;
+    top: -53px;
+}
+
+.timeline-month-work-name {
+    position: absolute; 
+    transform: translateX(-50%); 
+    z-index: 1; 
+    top: 28px; 
+    left:5px; 
+    font-size: 20px; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-work-name {
+    top: 62px; 
+}
+
+.timeline-month-work-day {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: -10px; 
+    left:5px; 
+    font-size: 20px; 
+    font-weight: 350; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-work-day {
+    opacity: 1;
+    top: 20px;
+}
+
+.timeline-month-work-month {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: 7px; 
+    left:5px; 
+    font-size: 22px; 
+    font-weight: 500; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-work-month {
+    opacity: 1;
+    top: 37px;
+}
+
+.timeline-month-event-name {
+    position: absolute; 
+    transform: translateX(-50%);
+    z-index: 1; 
+    top: -60px;  
+    left:10px; 
+    font-size: 20px; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-event-name {
+    top: -99px; 
+}
+
+.timeline-month-event-day {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: -47px; 
+    left:10px; 
+    font-size: 20px; 
+    font-weight: 350; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-event-day {
+    opacity: 1;
+    top: -77px;
+}
+
+.timeline-month-event-month {
+    opacity: 0.0;
+    position: absolute; 
+    transform: translateX(-50%); 
+    color: #aaacb9; 
+    z-index: 1; 
+    top: -28px; 
+    left:10px; 
+    font-size: 22px; 
+    font-weight: 500; 
+    vertical-align: middle;
+}
+.timeline-month:hover .timeline-month-event-month {
+    opacity: 1;
+    top: -58px;
+}
 
 /*-------------*/
 
@@ -1607,6 +1891,7 @@ a:hover {
 
 .filters {
     margin-bottom: 25px;
+    margin-top: 20px;
 }
 
 .filters button, .filters input {
