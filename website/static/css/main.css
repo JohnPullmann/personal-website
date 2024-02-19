@@ -376,7 +376,7 @@
     position: absolute; 
     left: -3px; 
     top: 2px; 
-    z-index: 4; 
+    z-index: 3; 
     height:16px; 
     width: 27px;
 }
@@ -396,7 +396,7 @@
     position: absolute; 
     left: -3px; 
     top: 2px; 
-    z-index: 4; 
+    z-index: 3; 
     height:16px; 
     width: 28px;
 }
@@ -418,7 +418,7 @@
     position: absolute; 
     left: -3px; 
     top: 5px; 
-    z-index: 4; 
+    z-index: 3; 
     height:10px; 
     width: 29px;
 }
@@ -1433,6 +1433,12 @@ footer p {
     display: none;
 }
 
+.port-elem-sel-image:hover {
+    transform: scale(1.1); /* Zoom the image */
+    filter: brightness(110%); /* Brighten the image */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth transition */
+}
+
 .portfolio-element-images img {
     margin:5px;
     
@@ -1978,6 +1984,8 @@ a:hover {
 
     appearance: auto;
 }
+
+
 
 select.filter-input {
     appearance: auto;

@@ -100,7 +100,7 @@ def build_portfolio_timeline():
         #    PortfolioTimeline[date.strftime('%Y-%m')][element_type][element.url_name] = element
         #    date += timedelta(days=30)
 
-    pprint(PortfolioTimeline)
+    #pprint(PortfolioTimeline)
 
 
 

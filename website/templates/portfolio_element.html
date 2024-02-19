@@ -29,9 +29,10 @@
                         <!-- Duplicate last image -->
                         <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[-1].image_path) }}" alt="image">
                         
-
                         {% for image in OrderedImages %}
-                            <img class="port-elem-sel-image" data-index="{{ loop.index0 }}" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                            <a data-fancybox="gallery"  href="{{ url_for('static', filename=image.image_path) }}">
+                                <img class="port-elem-sel-image" data-index="{{ loop.index0 }}" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                            </a>
                         {% endfor %}
                         
                         <!-- Duplicate first image -->
