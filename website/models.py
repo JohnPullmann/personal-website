@@ -120,8 +120,6 @@ class Work(PortfolioElement):
 
     def __repr__(self):
         return f"Work('{self.name}', '{self.type}', {self.date_text})"
-        #return f"Work('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
-
 
 class Education(PortfolioElement):
     __tablename__ = 'education'
@@ -145,7 +143,6 @@ class Education(PortfolioElement):
 
     def __repr__(self):
         return f"Education('{self.name}', '{self.type}', {self.date_text})"
-        #return f"Education('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date_start}', '{self.date_end}', '{self.date_text}', '{self.images}, {self.images_small}')"
 
 
 class Certification(PortfolioElement):
@@ -171,4 +168,3 @@ class Certification(PortfolioElement):
 
     def __repr__(self):
         return f"Certification('{self.name}', '{self.type}', {self.first_acquired}, {self.valid_ranges})"
-        #return f"Certification('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.valid_ranges}', '{self.date_text}', '{self.images}, {self.images_small}')"

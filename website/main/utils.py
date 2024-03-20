@@ -61,7 +61,14 @@ def build_portfolio_timeline():
     # Get all PortfolioElement objects ordered by date_filter
     PortfolioElements = PortfolioElement.query.order_by(asc(PortfolioElement.date_filter))
 
-    start_date = PortfolioElements[0].date_filter
+    i = 0
+    while True:
+        if PortfolioElements[i].type != 'project':
+            start_date = PortfolioElements[i].date_filter
+            break
+        else:
+            i += 1
+    
     date = start_date.replace(day=1)
     end_date = datetime.now() # today
     while date <= end_date:

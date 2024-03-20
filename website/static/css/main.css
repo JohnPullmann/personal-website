@@ -290,6 +290,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    scrollbar-width: none;
     padding: 5px; 
     padding-top: 80px; 
     padding-bottom: 80px
@@ -376,7 +377,7 @@
     position: absolute; 
     left: -3px; 
     top: 2px; 
-    z-index: 3; 
+    z-index: 2; 
     height:16px; 
     width: 27px;
 }
@@ -396,7 +397,7 @@
     position: absolute; 
     left: -3px; 
     top: 2px; 
-    z-index: 3; 
+    z-index: 2; 
     height:16px; 
     width: 28px;
 }
@@ -418,7 +419,7 @@
     position: absolute; 
     left: -3px; 
     top: 5px; 
-    z-index: 3; 
+    z-index: 2; 
     height:10px; 
     width: 29px;
 }
@@ -428,7 +429,7 @@
     position: absolute; 
     top: -29px;
     left: 4px; 
-    z-index: 3; 
+    z-index: 2; 
     height: 43px; 
     width: 12px;
 }
@@ -1390,7 +1391,7 @@ footer p {
 }
 
 .paging {
-    min-width: 750px;
+    width: 750px;
     max-width: min(950px, 80%);
 }
 

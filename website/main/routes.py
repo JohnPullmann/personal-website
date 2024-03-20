@@ -24,12 +24,10 @@ def index():
 @main.route('/home', methods=['GET', 'POST'])
 def home():
     # home route
-    ...
     # Contact me form
     form = ContactMe()
     session['_csrf_token'] = generate_csrf()  # Manually generate and store a CSRF token in the session
-    #print(session.get('csrf_token'))
-    #print(session)
+
     if form.validate_on_submit():
         try:
             msg = Message('New contact form submission',
@@ -44,7 +42,6 @@ def home():
         except Exception as e:
             flash(f'Failed to send email. {e}', 'fail')
     
-
     return render_template('home.html', title='Home', form=form)	
 
 @main.route('/portfolio')
@@ -94,13 +91,11 @@ def portfolio_element_page(element_type, element_name):
             database.session.add(comment)
             database.session.commit()
         return redirect(url_for('main.portfolio_element_page', element_type=element_type, element_name=element_name))
-    # portfolio element route
 
     OrderedImages = element.images[1:len(element.images)//2+1] + [element.images[0]] + element.images[len(element.images)//2+1:]
 
     # Read the SVG files and store their contents in a dictionary
     svg_contents = {}
-
     for tag in element.tags:
         with current_app.open_resource('static/images/tags/' + tag.name + '.svg') as f:
             svg_contents[tag.name] = f.read().decode('utf-8')
