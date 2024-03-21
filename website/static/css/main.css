@@ -281,6 +281,14 @@
 .tag-big-Linux svg {
     border: 3px solid #000000;
 }
+
+.eye-shown, .eye-hidden {
+    width: 50px; 
+    margin-top: 10px;
+}
+.eye-hidden {
+    opacity: 0.45;
+}
 /*-------------*/
 
 /*Timeline*/
@@ -1868,7 +1876,7 @@ footer p {
     width: 80%;
     height: 1140px;
     width: 820px;
-    margin-top: 40px;
+    margin-top: 25px;
     margin-bottom: 50px;
 }
 
@@ -2196,7 +2204,7 @@ content (after 1025px)
         width: 100%;
         padding-bottom: 139%; /* Adjust this value based on the aspect ratio of the PDF */
         overflow: hidden;
-        margin-top: 40px;
+        margin-top: 25px;
         margin-bottom: 50px;
     }
     
@@ -2787,6 +2795,10 @@ content (after 650px)
 
     .filters-javascript {
         margin-bottom: 0;
+    }
+
+    .eye-shown, .eye-hidden {
+        width: 40px;
     }
 
     

@@ -70,8 +70,11 @@ def portfolio():
 @main.route('/resume')
 def resume():
     # resume route
-    ...
-    return render_template('resume.html', title='Resume')
+    resume_lang = request.args.get('resume_lang')
+    if not resume_lang:
+        resume_lang = 'en'
+    
+    return render_template('resume.html', title='Resume', resume_lang=resume_lang)
 
 @main.route('/toggle_theme', methods=['POST'])
 def toggle_theme():
