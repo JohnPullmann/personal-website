@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block content %}
+    <div class="error_page">
+        <h1>404</h1>
+        <h2>Page not found</h2>
+        <p>That page does not exist. Please try a different location.</p>
+
+        <a href="{{ url_for('main.home') }}" class="button-red-outline" >Home ></a>
+    </div>
+{% endblock %}

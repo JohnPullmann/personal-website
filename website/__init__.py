@@ -25,9 +25,11 @@ def create_app(config_class=Config):
     # import routes from blueprints
     from website.main.routes import main
     from website.users.routes import users
+    from website.errors.handlers import errors
     # register blueprints
     app.register_blueprint(main)
     app.register_blueprint(users)
+    app.register_blueprint(errors)
 
     @app.context_processor
     def inject_theme():

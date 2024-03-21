@@ -285,10 +285,20 @@
 .eye-shown, .eye-hidden {
     width: 50px; 
     margin-top: 10px;
+    opacity: 0.85;
 }
 .eye-hidden {
-    opacity: 0.45;
+    opacity: 0.50;
 }
+
+.eye-shown:hover {
+    opacity: 1;
+}
+.eye-hidden:hover {
+    opacity: 0.65;
+}
+
+
 /*-------------*/
 
 /*Timeline*/
@@ -679,6 +689,26 @@ body {
 body {
     background-color: var(--background-color);
     font-family: var(--font-family);
+}
+
+.error_page {
+    align-items: center;
+    text-align: center;
+}
+.error_page h1 {
+    font-size: calc(65px + 2vw); 
+    font-weight: 700; 
+    line-height: 0.75;
+}
+.error_page h2 {
+    font-weight: 700; 
+    font-size: calc(22px + 1vw); 
+    color: #d14229; 
+    margin-bottom: 0;
+}
+.error_page p {
+    margin-bottom: calc(20px + 1vw);
+    font-size: calc(12px + 0.4vw)
 }
 
 .button-red-outline {

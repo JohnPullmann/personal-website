@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Server problem{% endblock %}
+{% block content %}
+    <div class="error_page">
+        <h1>500</h1>
+        <h2>Something went wrong</h1>
+        <p>We're experiencing some trouble on out end. Please try again later.</p>
+
+        <a href="{{ url_for('main.home') }}" class="button-red-outline" >Home ></a>
+    </div>
+{% endblock %}
