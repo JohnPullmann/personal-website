@@ -73,7 +73,7 @@ def resume():
     resume_lang = request.args.get('resume_lang')
     if not resume_lang:
         resume_lang = 'en'
-    
+
     return render_template('resume.html', title='Resume', resume_lang=resume_lang)
 
 @main.route('/toggle_theme', methods=['POST'])
@@ -118,3 +118,7 @@ def portfolio_element_page(element_type, element_name):
     portfolio_timeline = build_portfolio_timeline() # TODO global creating
 
     return render_template('portfolio_element.html', title='Portfolio', form=form, PortfolioElements=PortfolioElements, timeline=portfolio_timeline, timespan=timespan, PortfolioElementSelected=element, OrderedImages=OrderedImages, SvgContents=svg_contents)
+
+@main.route('/testing')
+def testing():
+    return render_template('testing.html', title='Testing')

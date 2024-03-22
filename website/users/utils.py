@@ -4,6 +4,7 @@ from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
 from website import mail
+from flask import render_template
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -23,4 +24,6 @@ def send_reset_email(user):
 {url_for('users.reset_token', token=token, _external=True)}
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
+    msg.html = render_template('emails/reset-password.html' , reset_url=url_for('users.reset_token', token=token, _external=True), account_name=user.username, account_email=user.email)
+
     mail.send(msg)
