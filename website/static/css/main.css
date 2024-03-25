@@ -1422,6 +1422,22 @@ footer p {
     margin: auto;
     margin-bottom: 25px;
 
+    cursor: pointer;
+
+}
+
+.portfolio-element:hover a {
+    text-shadow: none ;
+    transition: 0.1s ease-in-out ;
+}
+.portfolio-element:hover .view-more {
+    text-shadow: 0px 0px 20px var(--shadow-color4), 0px 0px 5px var(--shadow-color4);
+    transition: 0.1s ease-in-out;
+}
+
+.portfolio-element img:hover {
+    filter: brightness(120%); /* Brighten the image */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth transition */
 }
 
 .portfolio-element-images img {
