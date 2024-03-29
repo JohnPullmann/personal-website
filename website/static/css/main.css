@@ -1254,6 +1254,7 @@ footer p {
     width: 27px;
     height: 21.6px;
     padding: 54px;
+    cursor: pointer;
 }
 
 .menu-bar-btn-pos-holder {

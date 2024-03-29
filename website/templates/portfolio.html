@@ -22,10 +22,10 @@
     <div class="timeline-spacer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 14"><g id="Spacer" data-name="Spacer"><g id="Spacer1-2" data-name="Spacer"><rect class="spacer"/></g></g></svg></div>
 
     {% for month in timeline %}
-        <a class="timeline-timespan-link" href="{{ url_for('main.portfolio') + '?timespan='+month }}">
+        <a class="timeline-timespan-link" href="{{ url_for('main.portfolio') + '?timespan='+month }}" aria-label="{{month + ' month'}}">
             <!-- years -->
             {% if month[-2:] == "01" %}
-            <a class="timeline-timespan-year-link" href="{{ url_for('main.portfolio') + '?timespan='+month[:4] }}">
+            <a class="timeline-timespan-year-link" href="{{ url_for('main.portfolio') + '?timespan='+month[:4] }}" aria-label="{{month[:4] + ' year'}}">
                 <p class="timeline-years"><b>{{ month[:4] }}</b></p>  
             </a>
             {% endif %}
@@ -91,7 +91,7 @@
     <div class="filters-other row-elements"> 
 
         <form action="/portfolio" method="get">
-            <select class="filter-input"  id="sort" name="sort" onchange="submitWithButton()">
+            <select class="filter-input"  id="sort" name="sort" onchange="submitWithButton()" aria-label="sort portfolio elements">
                 <option value="default_order" {% if request.args.get('sort') == 'default_order' %}selected{% endif %}>Default order</option>
                 <option value="newest" {% if request.args.get('sort') == 'newest' %}selected{% endif %}>Newest</option>
                 <option value="oldest" {% if request.args.get('sort') == 'oldest' %}selected{% endif %}>Oldest</option>
@@ -133,21 +133,21 @@
                         <!--small image for changed layout, first hidden-->
                         {% for image in PortfolioElement.images_small %}
                             {% if loop.index == 2 %}
-                                <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                                <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="portofolio element image">
                             {% endif %}
                         {% endfor %}
 
                         <!--big image for main layout-->
                         {% for image in PortfolioElement.images_small %}
                             {% if loop.first %}
-                                <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                                <img src="{{ url_for('static', filename=image.image_path) }}" alt="portofolio element image">
                             {% endif %}
                         {% endfor %}
 
                         <!--small image for changed layout, first hidden-->
                         {% for image in PortfolioElement.images_small %}
                             {% if loop.index == 3 %}
-                                <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                                <img class="port-elem-image-sec" src="{{ url_for('static', filename=image.image_path) }}" alt="portofolio element image">
                             {% endif %}
                         {% endfor %}
 
@@ -155,7 +155,7 @@
                         <div class="portfolio-element-images-secondary">
                             {% for image in PortfolioElement.images_small %}
                                 {% if loop.index == 2 or loop.index == 3 %}
-                                    <img src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                                    <img src="{{ url_for('static', filename=image.image_path) }}" alt="portofolio element image">
                                 {% endif %}
                             {% endfor %}
                         </div>

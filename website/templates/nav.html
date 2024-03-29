@@ -1,16 +1,16 @@
 <!-- secondary bar -->
 <!-- burger menu button -->
-<a class="menu-bar-btn" href="#">
+<span class="menu-bar-btn">
     <!-- icon -->
     <span></span>
-</a>
+</span>
 <!-- burger menu button end -->
 <div class="secondary-bar nav-sec-box-effect {{ 'logged-in-nav' if current_user.is_authenticated }}">
     <ul class="secondary-bar-items">
         {% if current_user.is_authenticated %}
         
             <li>
-                <a href="{{ url_for('users.account') }}"><img class="rounded-circle account-img" src=" {{ url_for('static', filename='images/users/profile_pics/' + current_user.image_file) }} " style="width: 40px; height:40px; object-fit: fill;"></a>
+                <a href="{{ url_for('users.account') }}"><img class="rounded-circle account-img" src=" {{ url_for('static', filename='images/users/profile_pics/' + current_user.image_file) }} " style="width: 40px; height:40px; object-fit: fill;" alt="account photo" ></a>
             </li>    
             <li style="padding-left: 0; margin-right: auto;" class="username">
                 <a href="{{ url_for('users.account') }}"><b>{{ current_user.username}}</b> </a>

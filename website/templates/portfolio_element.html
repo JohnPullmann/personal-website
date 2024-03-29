@@ -27,16 +27,16 @@
                     </div>
                     <div class="portfolio-element-selected-images">
                         <!-- Duplicate last image -->
-                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[-1].image_path) }}" alt="image">
+                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[-1].image_path) }}" alt="portofolio element image">
                         
                         {% for image in OrderedImages %}
                             <a data-fancybox="gallery"  href="{{ url_for('static', filename=image.image_path) }}">
-                                <img class="port-elem-sel-image" data-index="{{ loop.index0 }}" src="{{ url_for('static', filename=image.image_path) }}" alt="image">
+                                <img class="port-elem-sel-image" data-index="{{ loop.index0 }}" src="{{ url_for('static', filename=image.image_path) }}" alt="portofolio element image">
                             </a>
                         {% endfor %}
                         
                         <!-- Duplicate first image -->
-                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[0].image_path) }}" alt="image">
+                        <img class="port-elem-sel-image" src="{{ url_for('static', filename=OrderedImages[0].image_path) }}" alt="portofolio element image">
                     </div>
                     <div  class="portfolio-element-selected-images-arrow-right">
                         <svg  style="fill: none;"  width="18" height="33" viewBox="0 0 18 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,9 +92,9 @@
                             <div class="portfolio-element-selected-comments-add">
                                 <div>
                                     {% if current_user.is_authenticated %}
-                                        <img class="comment-image" src=" {{ url_for('static', filename='images/users/profile_pics/' + current_user.image_file) }} " alt="image">
+                                        <img class="comment-image" src=" {{ url_for('static', filename='images/users/profile_pics/' + current_user.image_file) }} " alt="portofolio element image">
                                     {% else %}
-                                        <img class="comment-image" src=" {{ url_for('static', filename='images/users/profile_pics/default.jpg') }} " alt="image">
+                                        <img class="comment-image" src=" {{ url_for('static', filename='images/users/profile_pics/default.jpg') }} " alt="portofolio element image">
                                     {% endif %}
                                     
                                 </div>
@@ -116,7 +116,7 @@
                                 {% for comment in PortfolioElementSelected.comments %}
                                     <div class="portfolio-element-selected-comment">
                                         <div class="comment-image-block">
-                                            <img class="comment-image" src="{{ url_for('static', filename='images/users/profile_pics/' + comment.author_object.image_file) }}" alt="image">
+                                            <img class="comment-image" src="{{ url_for('static', filename='images/users/profile_pics/' + comment.author_object.image_file) }}" alt="portofolio element image">
                                         </div>
                                         <div class="portfolio-element-selected-comment-text">
                                             <!--if it is current youser just write You-->
@@ -155,6 +155,9 @@
 
 <!-- Script for portfolio element that darken the background and redirect to portfolio page if clicked-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='plugins/fancybox.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/fancybox.min.css') }}" media="all" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ url_for('static', filename='plugins/fancybox.min.css') }}"></noscript>
 <script>
 $(document).ready(function() {
     $('.content').addClass('portfolio-element-active');

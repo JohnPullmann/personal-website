@@ -3,7 +3,7 @@
 {% block content %}
     <div class="section section-form" id="account-update" style="margin-top: 0;"> <!-- TODO replace bootstrap-->
         <div class="account-informations">
-            <img class="rounded-circle account-img" src=" {{image_file}} " style="width: 100px; height:100px; object-fit: fill;">
+            <img class="rounded-circle account-img" src=" {{image_file}} " style="width: 100px; height:100px; object-fit: fill;" alt="account image" >
             <div class="account-informations-body">
                 <h2 class="account-heading"> {{ current_user.username}} </h2>
                 <p class="account-informations-email"> {{ current_user.email}} </p>
