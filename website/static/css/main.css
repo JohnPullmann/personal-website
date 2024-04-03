@@ -1735,7 +1735,7 @@ footer p {
 .portfolio-element-selected {
     z-index: 5;
     min-height: 40vh;
-    border-radius: 40px;
+    border-radius: 7%;
     padding: 45px;
     max-width: 1000px;
     align-self: center;
