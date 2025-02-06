@@ -84,7 +84,8 @@ def build_portfolio_timeline():
 
             element_start_date = element.date_start.replace(day=1)
             element_date = element_start_date
-            element_end_date = element.date_end.replace(day=1)+relativedelta(months=3) if element.date_end else datetime.today().replace(day=1) + relativedelta(months=3)
+            # element.date_end.replace(day=1)+relativedelta(months=3) why was there this ???
+            element_end_date = element.date_end.replace(day=1) if element.date_end is not None else datetime.today().replace(day=1)
             while element_date <= element_end_date and element_date <= end_date:
                 if element_date.month == element_start_date.month and element_date.year == element_start_date.year:
                     status = 's'

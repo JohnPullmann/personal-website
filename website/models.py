@@ -42,7 +42,7 @@ class PortfolioElement(database.Model):
     @property
     def element_timespan(self):
         if self.date_start:
-            end_backup = self.date_end if self.date_end else datetime.today()
+            end_backup = self.date_end if self.date_end is not None else datetime.today()
             self.date_end = self.date_end.replace(day=1) if self.date_end else datetime.today().replace(day=1)
             dates = [d for d in rrule(MONTHLY, dtstart=self.date_start, until=self.date_end)]
             if self.date_end not in dates:
@@ -53,7 +53,7 @@ class PortfolioElement(database.Model):
             return [self.date_filter]
 
     def __repr__(self):
-        return f"PortfolioElement('{self.name}', '{self.type}', {self.date_filter})"
+        return f"PortfolioElement('{self.url_name}', '{self.type}', {self.date_filter})"
         #return f"PortfolioElement('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.images}, {self.images_small}')"
 
 class Image(database.Model):
@@ -94,7 +94,7 @@ class Project(PortfolioElement):
         return self.date
 
     def __repr__(self):
-        return f"Project('{self.name}', '{self.type}', {self.date_text})"
+        return f"Project('{self.url_name}', '{self.type}', {self.date_text})"
         #return f"Project('{self.name}', '{self.id}', '{self.type}', '{self.description}', '{self.tags}', '{self.date}', '{self.date_text}',  '{self.images}, {self.images_small}')"
 
 
@@ -119,7 +119,7 @@ class Work(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Work('{self.name}', '{self.type}', {self.date_text})"
+        return f"Work('{self.url_name}', '{self.type}', {self.date_text})"
 
 class Education(PortfolioElement):
     __tablename__ = 'education'
@@ -134,7 +134,7 @@ class Education(PortfolioElement):
     @hybrid_property
     def date_text(self):
         start = self.date_start.strftime('%b %Y')
-        end = self.date_end.strftime('%b %Y') if self.date_end else 'Present'
+        end = self.date_end.strftime('%b %Y') if self.date_end is not None else 'Present'
         return f'{start} - {end}'
     
     @hybrid_property
@@ -142,7 +142,7 @@ class Education(PortfolioElement):
         return self.date_start
 
     def __repr__(self):
-        return f"Education('{self.name}', '{self.type}', {self.date_text})"
+        return f"Education('{self.url_name}', '{self.type}', {self.date_text})"
 
 
 class Certification(PortfolioElement):
@@ -167,4 +167,4 @@ class Certification(PortfolioElement):
         return self.first_acquired
 
     def __repr__(self):
-        return f"Certification('{self.name}', '{self.type}', {self.first_acquired}, {self.valid_ranges})"
+        return f"Certification('{self.url_name}', '{self.type}', {self.first_acquired}, {self.valid_ranges})"
