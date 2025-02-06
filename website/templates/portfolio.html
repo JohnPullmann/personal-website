@@ -43,11 +43,24 @@
                             <p class="timeline-month-education-name"><b>{{ timeline[month]['education'][education].timeline_name }}</b></p>
                             <p class="timeline-month-education-day">{{ timeline[month]['education'][education].date_filter.strftime('%d') }}</p>
                             <p class="timeline-month-education-month">{{ timeline[month]['education'][education].date_filter.strftime('%b') }}</p>
-                        </a>    
+                        </a>
                     {% elif education[0] == 'i' %}
                         <svg class="timeline-month-education-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.75 10"><defs><style>.up-base</style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="up-base" d="M.88,10h20s11-9,7-10h-20s-11,9-7,10"/></g></g></svg>
+                    {% elif education[0] == 'l' %}
+                    <svg class="timeline-month-education-inprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.78 10"><defs><style></style></defs>
+                        <title>{{timeline[month]['education'][education].timeline_name}}</title>
+                        <g id="Layer_2" data-name="Layer 2" transform="translate(-2,0)">
+                            <g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1">
+                                <g id="Layer_1-2-2" data-name="Layer 1-2"><path class="cls-1" d="M.88,10h20s.91-9-3.09-10H7.88s-11,9-7,10"/>
+                                </g>
+                                <g id="Layer_1-2-3" data-name="Layer 1-2"><path class="cls-1" d="M26.9,10c4-1-7-10-7-10H12.59C8.59,1,6.9,10,6.9,10h20"/></g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+
                     {% elif education[0] == 'e' %}
-                        <svg class="timeline-month-education-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.88 16"><defs><style></style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="up-end" cx="9.88" cy="8" r="8"/><path class="up-end" d="M14.88,13H.88c-4-1,7-10,7-10h1l6,10"/></g></g></svg>
+                        <svg class="timeline-month-education-end" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.88 16"><defs><style></style></defs><title>{{timeline[month]['education'][education].timeline_name}}</title><g id="Layer_1-2" data-name="Layer 1-2"><circle class="cls-1" cx="18.88" cy="8" r="8"/><path class="cls-1" d="M14.88,3H.88c-4,1,7,10,7,10h14C25.88,12,14.88,3,14.88,3Z" transform="translate(0 0)"/></g></svg>
                     {% endif %}
 
                 {% endfor %}

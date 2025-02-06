@@ -91,6 +91,8 @@ def build_portfolio_timeline():
                     status = 's'
                 elif element_date.month == element_end_date.month and element_date.year == element_end_date.year:
                     status = 'e'
+                elif element.type == "education" and (element_date.month + 1) == element_end_date.month and element_date.year == element_end_date.year:
+                    status = 'l'  # SPECIAL CASE - one before end to reflect it for education
                 else:
                     status = 'i'
                 PortfolioTimeline[element_date.strftime('%Y-%m')][element_type][f"{status}-{element.url_name}"] = element
