@@ -237,6 +237,39 @@
     border-radius: 20px;
 }
 
+.site-notice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 22px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border: 1px solid var(--lighter-text-color);
+    border-radius: 14px;
+    background-color: var(--page-component-color);
+    color: var(--lighter-text-color);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.site-notice-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--lighter-text-color);
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+    font-family: Georgia, serif;
+    color: var(--lighter-text-color);
+}
+
+.site-notice p {
+    margin: 0;
+}
 
 .portfolio-element-selected-tags
 {
