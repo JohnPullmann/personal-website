@@ -27,5 +27,5 @@ PyYAML==6.0.1
 regex==2023.10.3
 SQLAlchemy>=2.0.36
 WTForms==3.1.1
-gunicorn>=23.0.0
+gunicorn>=26.0.0,<27
 Pillow>=10.1.0

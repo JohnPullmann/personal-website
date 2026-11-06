@@ -1,0 +1,14 @@
+.git
+.github
+.gitignore
+.dockerignore
+Dockerfile
+venv
+**/__pycache__
+.mypy_cache
+*.env
+.env
+testing-popullate-database.py
+website/site.db
+website/logs
+website/static/backup
